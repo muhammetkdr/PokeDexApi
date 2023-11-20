@@ -33,12 +33,12 @@ class DetailFragment @Inject constructor() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPokemon(args.id)
+        viewModel.getPokemon(args.name)
         observeUi()
     }
 
     private fun observeUi() {
-        viewModel.pokemonState.observe(viewLifecycleOwner) { response ->
+        viewModel.pokemonDetail.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResponse.Error -> {
 
@@ -49,9 +49,46 @@ class DetailFragment @Inject constructor() : Fragment() {
                 }
 
                 is NetworkResponse.Success -> {
-                    binding.ivPokemon.setPokemonImage(response.data.id.toString())
-                    binding.tvPokemonName.text = response.data.name
-                    binding.tvPokemonDetail.text = response.data.types?.get(0)?.type?.name
+                    binding.ivPokemon.setPokemonImage(args.imgUrl)
+                    binding.tvDescr.text = response.data.name
+
+                        val progress = response.data.stats?.get(0)?.baseStat
+/*                        binding.progressBar.max = 200
+                        binding.progressBar.setProgress(progress!!,true)
+                        binding.progressBar.progressTintList = ColorStateList.valueOf(requireContext().getColor(R.color.blue))*/
+
+                    with(binding.statsContainer){
+                        tvHPValue.text = response.data.stats?.first { it.stat?.name == "hp" }?.baseStat.toString()
+                        tvAttackValue.text = response.data.stats?.first { it.stat?.name == "attack" }?.baseStat.toString()
+                        tvDefValue.text = response.data.stats?.first { it.stat?.name == "defense" }?.baseStat.toString()
+                        tvSpAttackValue.text = response.data.stats?.first { it.stat?.name == "special-attack" }?.baseStat.toString()
+                        tvSpDefenseValue.text = response.data.stats?.first { it.stat?.name == "special-defense" }?.baseStat.toString()
+                        tvSpeedValue.text = response.data.stats?.first { it.stat?.name == "speed" }?.baseStat.toString()
+                    }
+
+                    with(binding.statsContainer){
+                       pbHP.setProgress(response.data.stats?.first { it.stat?.name == "hp" }?.baseStat!!,true)
+                       pbAttack.setProgress( response.data.stats?.first { it.stat?.name == "attack" }?.baseStat!!,true)
+                       pbDef.setProgress( response.data.stats?.first { it.stat?.name == "defense" }?.baseStat!!,true)
+                       pbSpAtk.setProgress( response.data.stats?.first { it.stat?.name == "special-attack" }?.baseStat!!,true)
+                       pbSpDef.setProgress( response.data.stats?.first { it.stat?.name == "special-defense" }?.baseStat!!,true)
+                       pbSpeed.setProgress( response.data.stats?.first { it.stat?.name == "speed" }?.baseStat!!,true)
+                    }
+
+                }
+            }
+        }
+
+        viewModel.pokemonStateSpecies.observe(viewLifecycleOwner){response->
+            when(response){
+                is NetworkResponse.Error -> {
+
+                }
+                NetworkResponse.Loading -> {
+
+                }
+                is NetworkResponse.Success -> {
+                    binding.tvDescr.text = response.data.flavorTextEntries?.get(9)?.flavorText
                 }
             }
         }

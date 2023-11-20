@@ -5,41 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/ivPokemon"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <include
+        android:id="@+id/statsContainer"
+        layout="@layout/layout_detail_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescr" />
+
     <TextView
-        android:id="@+id/tvPokemonName"
+        android:id="@+id/tvDescr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        tools:text="Balbazar"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="104dp"
+        android:padding="10dp"
+        android:textColor="@color/blue"
         android:textSize="20sp"
-        android:gravity="center"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPokemon"
+        tools:text="dşösaidmösaşidsad" />
+
+    <TextView
+        android:id="@+id/tvWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tvDescr"
+        app:layout_constraintEnd_toStartOf="@+id/tvHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPokemon" />
 
     <TextView
-        android:id="@+id/tvPokemonDetail"
+        android:id="@+id/tvHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        tools:text="23242324"
-        android:textSize="20sp"
-        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tvDescr"
+        app:layout_constraintEnd_toStartOf="@+id/tvMoves"
+        app:layout_constraintStart_toEndOf="@+id/tvWeight"
+        app:layout_constraintTop_toBottomOf="@+id/ivPokemon" />
+
+    <TextView
+        android:id="@+id/tvMoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/tvDescr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPokemonName" />
+        app:layout_constraintStart_toEndOf="@+id/tvHeight"
+        app:layout_constraintTop_toBottomOf="@+id/ivPokemon" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

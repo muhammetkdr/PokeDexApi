@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.muhammetkdr.pokemondex.R
-import com.muhammetkdr.pokemondex.common.NetworkResponse
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -41,33 +40,19 @@ class HomeFragment @Inject constructor() : Fragment(R.layout.fragment_home) {
 
     private fun initRvAdapter() {
         binding.rvPoke.adapter = adapter
-        binding.rvPoke.layoutManager = GridLayoutManager(requireContext(),2)
+        binding.rvPoke.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        adapter.setOnItemClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+        adapter.setOnItemClickListener { id, name, url ->
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id,name,url)
             findNavController().navigate(action)
         }
     }
 
     private fun observeUi() {
-        viewModel.pokeState.observe(viewLifecycleOwner) { response ->
-            when (response) {
-                is NetworkResponse.Error -> {
-
-                }
-
-                NetworkResponse.Loading -> {
-
-                }
-
-                is NetworkResponse.Success -> {
-                    response.data.results?.let {
-                        adapter.updatePokemonList(it)
-                    }
-                }
-
+        viewModel.pokeState.observe(viewLifecycleOwner) { state ->
+            state?.let {
+                adapter.updatePokemonList(state)
             }
         }
     }
-
 }

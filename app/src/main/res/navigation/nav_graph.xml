@@ -23,5 +23,11 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="imgUrl"
+            app:argType="string" />
     </fragment>
 </navigation>

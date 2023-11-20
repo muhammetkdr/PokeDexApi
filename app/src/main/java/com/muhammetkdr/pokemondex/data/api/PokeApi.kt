@@ -2,6 +2,7 @@ package com.muhammetkdr.pokemondex.data.api
 
 import com.muhammetkdr.pokemondex.data.dto.pokemon.Pokemon
 import com.muhammetkdr.pokemondex.data.dto.pokemonlist.PokemonList
+import com.muhammetkdr.pokemondex.data.dto.pokemonspecies.PokemonSpecies
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,4 +20,10 @@ interface PokeApi {
     suspend fun getPokemonInfo(
         @Path("name") name: String
     ): Response<Pokemon>
+
+    @GET("pokemon-species/{name}")
+    suspend fun getPokemonSpecies(
+        @Path("name") name: String
+    ): Response<PokemonSpecies>
+
 }

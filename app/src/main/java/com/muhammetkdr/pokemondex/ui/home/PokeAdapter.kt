@@ -4,23 +4,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.muhammetkdr.pokemondex.common.setPokemonImage
-import com.muhammetkdr.pokemondex.data.dto.pokemonlist.Result
 import com.muhammetkdr.pokemondex.databinding.ItemPokemonBinding
 
 class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
 
-    private val items = mutableListOf<Result>()
+    private val items = mutableListOf<PokemonItem>()
 
     inner class PokemonViewHolder(private val binding: ItemPokemonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Result) {
+        fun bind(item: PokemonItem) {
 
-            binding.ivPokemon.setPokemonImage(adapterPosition.plus(1).toString())
-            binding.number.text = adapterPosition.plus(1).toString()
-            binding.pokemonName.text = item.name
+            binding.ivPokemon.setPokemonImage(item.imageUrl)
+            binding.number.text = item.pokeId
+            binding.pokemonName.text = item.pokeName
 
             binding.root.setOnClickListener{
-                item.name?.let { it1 -> onItemClickListener?.invoke(it1) }
+               onItemClickListener?.invoke(item.pokeId,item.pokeName,item.imageUrl)
             }
         }
     }
@@ -36,15 +35,15 @@ class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
         holder.bind(items[position])
     }
 
-    fun updatePokemonList(newList: List<Result>) {
+    fun updatePokemonList(newList: List<PokemonItem>) {
         items.clear()
         items.addAll(newList)
         notifyDataSetChanged()
     }
 
-    private var onItemClickListener: ((String) -> Unit)? = null
+    private var onItemClickListener: ((String,String,String) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (String) -> Unit) {
+    fun setOnItemClickListener(listener: (String,String,String) -> Unit) {
         onItemClickListener = listener
     }
 }
