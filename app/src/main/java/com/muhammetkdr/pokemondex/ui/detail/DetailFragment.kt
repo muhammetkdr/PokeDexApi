@@ -52,6 +52,10 @@ class DetailFragment @Inject constructor() : Fragment() {
                     binding.ivPokemon.setPokemonImage(args.imgUrl)
                     binding.tvDescr.text = response.data.name
 
+                    binding.tvWeight.text = response.data.weight.toString()
+                    binding.tvHeight.text = response.data.height.toString()
+                    binding.tvMoves.text = response.data.moves?.first()?.move?.name.toString()
+
                         val progress = response.data.stats?.get(0)?.baseStat
 /*                        binding.progressBar.max = 200
                         binding.progressBar.setProgress(progress!!,true)

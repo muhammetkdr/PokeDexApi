@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#3702AF</color>
+    <color name="teal_200">#03DDC8</color>
+    <color name="teal_700">#028584</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="light_blue100">#69C3F6</color>
+    <color name="white">#FFFFFF</color>
     <color name="blue">#05B1FF</color>
+
+    <color name="light_blue">#2978DF</color>
+    <color name="light_blue300">#448AFF</color>
+
+    <color name="dark_blue">#000918</color>
+    <color name="dark_blue_500">#001331</color>
+    <color name="dark_blue_transparent_300">#80002B6E</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Pokemon Types -->
+    <color name="type_bug">#8CB230</color>
+    <color name="type_dark">#58575F</color>
+    <color name="type_dragon">#0F6AC0</color>
+    <color name="type_electric">#EED535</color>
+    <color name="type_fairy">#ED6EC7</color>
+    <color name="type_fighting">#D04164</color>
+    <color name="type_fire">#FD7D24</color>
+    <color name="type_flying">#748FC9</color>
+    <color name="type_ghost">#556AAE</color>
+    <color name="type_grass">#62B957</color>
+    <color name="type_ground">#DD7748</color>
+    <color name="type_ice">#61CEC0</color>
+    <color name="type_normal">#9DA0AA</color>
+    <color name="type_poison">#A552CC</color>
+    <color name="type_psychic">#EA5D60</color>
+    <color name="type_rock">#BAAB82</color>
+    <color name="type_steel">#417D9A</color>
+    <color name="type_water">#4A90DA</color>
+
+    <!-- Background Pokemon Types -->
+    <color name="background_type_bug">#8BD674</color>
+    <color name="background_type_dark">#6F6E78</color>
+    <color name="background_type_dragon">#7383B9</color>
+    <color name="background_type_electric">#F2CB55</color>
+    <color name="background_type_fairy">#EBA8C3</color>
+    <color name="background_type_fighting">#EB4971</color>
+    <color name="background_type_fire">#FFA756</color>
+    <color name="background_type_flying">#83A2E3</color>
+    <color name="background_type_ghost">#8571BE</color>
+    <color name="background_type_grass">#8BBE8A</color>
+    <color name="background_type_ground">#F78551</color>
+    <color name="background_type_ice">#91D8DF</color>
+    <color name="background_type_normal">#B5B9C4</color>
+    <color name="background_type_poison">#9F6E97</color>
+    <color name="background_type_psychic">#FF6568</color>
+    <color name="background_type_rock">#D4C294</color>
+    <color name="background_type_steel">#4C91B2</color>
+    <color name="background_type_water">#58ABF6</color>
 </resources>
