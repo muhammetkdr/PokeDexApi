@@ -50,7 +50,8 @@ class DetailFragment @Inject constructor() : Fragment() {
 
                 is NetworkResponse.Success -> {
                     binding.ivPokemon.setPokemonImage(args.imgUrl)
-                    binding.tvDescr.text = response.data.name
+
+//                    binding.tvDescr.text = response.data.name
 
                     binding.tvWeight.text = response.data.weight.toString()
                     binding.tvHeight.text = response.data.height.toString()

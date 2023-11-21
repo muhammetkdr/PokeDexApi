@@ -9,7 +9,6 @@ import com.muhammetkdr.pokemondex.common.NetworkResponse
 import com.muhammetkdr.pokemondex.data.source.PokeRemoteDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,8 +20,9 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemote
         getPokemonList()
     }
 
-    private val _pokeState = MutableLiveData<List<PokemonItem>>()
-    val pokeState: LiveData<List<PokemonItem>> = _pokeState
+    private val _pokeUiState: MutableLiveData<HomeScreenUiState> =
+        MutableLiveData(HomeScreenUiState.initial())
+    val pokeState: LiveData<HomeScreenUiState> = _pokeUiState
 
     private val _pokemons: MutableLiveData<List<PokemonItem>> = MutableLiveData(emptyList())
 
@@ -33,16 +33,21 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemote
         remoteDataSource.getPokemonList(150, 0).collect { response ->
             when (response) {
                 is NetworkResponse.Error -> {
-
+                    _pokeUiState.postValue(
+                        HomeScreenUiState(
+                            isError = true,
+                            errorMessage = response.error
+                        )
+                    )
                 }
 
                 NetworkResponse.Loading -> {
-
+                    _pokeUiState.postValue(HomeScreenUiState(isLoading = true))
                 }
 
                 is NetworkResponse.Success -> {
-                    val uiItems = mutableListOf<PokemonItem>()
-                    val uiState = response.data.results?.mapIndexed { index, data ->
+                    val pokemons = mutableListOf<PokemonItem>()
+                    val pokeUiItem = response.data.results?.mapIndexed { index, data ->
                         PokemonItem(
                             pokeName = data.name!!,
                             pokeId = (index + 1).getPokemonId(),
@@ -50,22 +55,22 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemote
                         )
                     }
 
-                    uiState?.forEach{
-                        uiItems.add(it)
+                    pokeUiItem?.forEach {
+                        pokemons.add(it)
                     }
-                    _pokeState.postValue(uiItems)
+                    _pokeUiState.postValue(HomeScreenUiState(pokemons))
                 }
             }
         }
     }
 
-    fun setPokemonListData(pokemons : List<PokemonItem>) = viewModelScope.launch{
+    fun setPokemonListData(pokemons: List<PokemonItem>) = viewModelScope.launch {
         _pokemons.postValue(pokemons)
     }
 
     fun filterPokemonQuery(query: Editable?) {
         viewModelScope.launch(Dispatchers.IO) {
-            if ( query.isNullOrBlank() || query.isEmpty()){
+            if (query.isNullOrBlank() || query.isEmpty()) {
                 _pokemonsQuery.postValue(_pokemons.value)
                 return@launch
             }
@@ -73,7 +78,11 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemote
             val queryList = mutableListOf<PokemonItem>()
 
             _pokemons.value?.forEach {
-                if (it.pokeName.contains(query.toString(), true) || it.pokeId.contains(query.toString())) {
+                if (it.pokeName.contains(
+                        query.toString(),
+                        true
+                    ) || it.pokeId.contains(query.toString())
+                ) {
                     queryList.add(it)
                 }
             }
@@ -82,10 +91,21 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemote
         }
     }
 
-    private fun Int.getPokemonId():String{
+    private fun Int.getPokemonId(): String {
         return "#${this.toString().padStart(3, '0')}"
     }
 
+}
+
+data class HomeScreenUiState(
+    val pokeItems: List<PokemonItem> = emptyList(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+) {
+    companion object {
+        fun initial() = HomeScreenUiState(isLoading = true)
+    }
 }
 
 data class PokemonItem(
