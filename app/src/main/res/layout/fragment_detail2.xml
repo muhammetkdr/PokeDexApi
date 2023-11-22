@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pokemon_type_bug">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="-56dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/detail_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokemon">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_pokemon_type" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="About"
+            android:textAlignment="center"
+            android:textColor="@color/pokemon_type_bug"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_weight"
+                        android:layout_marginEnd="8dp"
+                        >
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="10sp"
+                        android:paddingTop="2dp"
+                        android:textColor="#1D1D1D"
+                        android:fontFamily="@font/poppins"
+                        tools:text="6,9 kg"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Weight"
+                    android:paddingTop="2dp"
+                    android:textAlignment="center"
+                    android:textColor="#666666"
+                    android:fontFamily="@font/poppins">
+
+                </TextView>
+                
+            </LinearLayout>
+            
+            
+            
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divederColor" />
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_straighten"
+                        android:layout_marginEnd="8dp"
+                        >
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="10sp"
+                        android:paddingTop="2dp"
+                        android:textColor="#1D1D1D"
+                        android:fontFamily="@font/poppins"
+                        tools:text="6,9 m"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Height"
+                    android:paddingTop="2dp"
+                    android:textAlignment="center"
+                    android:textColor="#666666"
+                    android:fontFamily="@font/poppins">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/view33"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divederColor" />
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="10sp"
+                        android:textColor="#1D1D1D"
+                        android:fontFamily="@font/poppins"
+                        tools:text="6,9 kg">
+                    </TextView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="10sp"
+                        android:textColor="#1D1D1D"
+                        android:fontFamily="@font/poppins"
+                        tools:text="6,9 kg">
+
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="Moves"
+                    android:paddingTop="2dp"
+                    android:textAlignment="center"
+                    android:textColor="#666666"
+                    android:fontFamily="@font/poppins">
+
+                </TextView>
+
+            </LinearLayout>
+            
+            
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:fontFamily="@font/poppins"
+            android:lineHeight="16sp"
+            android:textColor="#1D1D1D"
+            android:textSize="@dimen/_10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:text="There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger." />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="Base Stats"
+            android:textColor="@color/pokemon_type_bug"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/stats22"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSatk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="16sp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK" />
+
+                <TextView
+                    android:id="@+id/tvSatk2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="16sp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvSatk3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="16sp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvSatk4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="16sp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/tvSatk5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="16sp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvSatk6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="16sp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12dp"
+                android:background="@color/divederColor" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/progres1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:lineHeight="16sp"
+                    android:textAlignment="center"
+                    android:textColor="#1D1D1D"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/progres2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:lineHeight="16sp"
+                    android:textAlignment="center"
+                    android:textColor="#1D1D1D"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/progres3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:lineHeight="16sp"
+                    android:textAlignment="center"
+                    android:textColor="#1D1D1D"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/progres4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:lineHeight="16sp"
+                    android:textAlignment="center"
+                    android:textColor="#1D1D1D"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/progres5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:lineHeight="16sp"
+                    android:textAlignment="center"
+                    android:textColor="#1D1D1D"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/progres6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:lineHeight="16sp"
+                    android:textAlignment="center"
+                    android:textColor="#1D1D1D"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="SATK">
+
+                </TextView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_8dp"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressbar1"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:layout_weight="1"
+                    android:max="200" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:layout_weight="1"
+                    android:max="200" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:layout_weight="1"
+                    android:max="200" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar4"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:layout_weight="1"
+                    android:max="200" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar5"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:layout_weight="1"
+                    android:max="200" />
+
+                <ProgressBar
+                    android:id="@+id/progressbar6"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    android:max="200" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/ivPoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_pokeball_big" />
+
+    <ImageView
+        android:id="@+id/ivBackPress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_24sp"
+        android:layout_marginTop="@dimen/_24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBackPress"
+        app:layout_constraintStart_toEndOf="@+id/ivBackPress"
+        app:layout_constraintTop_toTopOf="@+id/ivBackPress"
+        tools:text="Balbasaur" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_24dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        tools:text="#001" />
+
+    <ImageView
+        android:id="@+id/tvPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/bulbasaur" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

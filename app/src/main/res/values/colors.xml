@@ -18,6 +18,8 @@
     <color name="dark_blue_transparent_300">#80002B6E</color>
     <color name="transparent">#00000000</color>
 
+    <color name="divederColor">#E0E0E0</color>
+
     <color name="pokemon_type_bug">#A7B723</color>
     <color name="pokemon_type_dark">#75574C</color>
     <color name="pokemon_type_dragon">#7037FF</color>
