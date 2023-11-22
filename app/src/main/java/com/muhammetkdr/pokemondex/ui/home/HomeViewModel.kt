@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
-import com.muhammetkdr.pokemondex.data.source.PokeRemoteDataSource
 import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRepository) :
+class HomeViewModel @Inject constructor(private val pokeRepository: PokeRepository) :
     ViewModel() {
 
     init {
@@ -31,7 +30,7 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeReposi
     val pokemonsQuery: LiveData<List<PokemonItem>> = _pokemonsQuery
 
     private fun getPokemonList() = viewModelScope.launch(Dispatchers.IO) {
-        remoteDataSource.getPokemonList(150, 0).collect { response ->
+        pokeRepository.getPokemonList(150, 0).collect { response ->
             when (response) {
                 is NetworkResponse.Error -> {
                     _pokeUiState.postValue(
@@ -50,7 +49,7 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeReposi
                     val pokemons = mutableListOf<PokemonItem>()
                     val pokeUiItem = response.data.mapIndexed { index, data ->
                         PokemonItem(
-                            pokeName = data.pokeNames,
+                            pokeName = data.pokeName,
                             pokeId = (index + 1).getPokemonId(),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png"
                         )

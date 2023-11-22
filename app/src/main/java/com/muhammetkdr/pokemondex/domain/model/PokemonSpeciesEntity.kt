@@ -1,4 +1,5 @@
 package com.muhammetkdr.pokemondex.domain.model
 
-class PokemonSpeciesEntity {
-}
+class PokemonSpeciesEntity(
+    val description:String
+)

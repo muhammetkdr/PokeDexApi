@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokeRepository {
     fun getPokemonList(limit: Int, offset: Int): Flow<NetworkResponse<List<PokemonListEntity>>>
-/*    fun getPokemonInfo(name: String): Flow<NetworkResponse<PokemonEntity>>
-    fun getPokemonSpecies(name: String): Flow<NetworkResponse<PokemonSpeciesEntity>>*/
+    fun getPokemonInfo(name: String): Flow<NetworkResponse<PokemonEntity>>
+    fun getPokemonSpecies(name: String): Flow<NetworkResponse<PokemonSpeciesEntity>>
 }

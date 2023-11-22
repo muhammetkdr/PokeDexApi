@@ -5,69 +5,118 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
-import com.muhammetkdr.pokemondex.data.dto.pokemon.Pokemon
-import com.muhammetkdr.pokemondex.data.dto.pokemonspecies.PokemonSpecies
-import com.muhammetkdr.pokemondex.data.source.PokeRemoteDataSource
+import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(private val remoteDataSource: PokeRemoteDataSource) :
-    ViewModel() {
+class DetailViewModel @Inject constructor(
+    private val pokeRepository: PokeRepository
+) : ViewModel() {
 
-    private val _pokemonDetail = MutableLiveData<NetworkResponse<Pokemon>>()
-    val pokemonDetail: LiveData<NetworkResponse<Pokemon>> = _pokemonDetail
+    private val _pokemonDetail = MutableLiveData<PokemonUiState>()
+    val pokemonDetail: LiveData<PokemonUiState> = _pokemonDetail
 
-    private val _pokemonSpecies = MutableLiveData<NetworkResponse<PokemonSpecies>>()
-    val pokemonStateSpecies: LiveData<NetworkResponse<PokemonSpecies>> = _pokemonSpecies
+    private val _pokemonSpecies = MutableLiveData<PokemonSpeciesUiState>()
+    val pokemonStateSpecies: LiveData<PokemonSpeciesUiState> = _pokemonSpecies
 
     fun getPokemon(name: String) = viewModelScope.launch(Dispatchers.IO) {
-        remoteDataSource.getPokemonInfo(name = name).collect { PokemonInfoResponse->
-            _pokemonDetail.postValue(PokemonInfoResponse)
-            when(PokemonInfoResponse){
-                is NetworkResponse.Error ->{
 
-                }
-                NetworkResponse.Loading -> {
-
-                }
-                is NetworkResponse.Success -> {
-
-                }
-            }
-        }
-
-        remoteDataSource.getPokemonSpecies(name = name).collect { PokemonSpeciesResponse->
-            _pokemonSpecies.postValue(PokemonSpeciesResponse)
-            when(PokemonSpeciesResponse){
+        pokeRepository.getPokemonInfo(name = name).collect { pokemonEntity ->
+            when (pokemonEntity) {
                 is NetworkResponse.Error -> {
-
+                    val state = PokemonUiState(
+                        isError = true,
+                        errorMessage = pokemonEntity.error
+                    )
+                    _pokemonDetail.postValue(state)
                 }
-                NetworkResponse.Loading -> {
 
-                }
+                NetworkResponse.Loading -> Unit
+
                 is NetworkResponse.Success -> {
 
+                    val pokeUiState = pokemonEntity.data.run {
+                        PokemonUiState(
+                            height = height,
+                            weight = weight,
+                            moves = moves,
+                            pokeTypes = pokeTypes,
+                            hpStat = hpStat,
+                            hpStatProgress = hpStatProgress,
+                            attackStat = attackStat,
+                            attackStatProgress = attackStatProgress,
+                            defenseStat = defenseStat,
+                            defenseStatProgress = defenseStatProgress,
+                            specialAttackStat = specialAttackStat,
+                            specialAttackStatProgress = specialAttackStatProgress,
+                            specialDefenseStat = specialDefenseStat,
+                            specialDefenseStatProgress = specialDefenseStatProgress,
+                            speedStat = speedStat,
+                            speedStatProgress = speedStatProgress,
+                            pokemonColor = pokemonColor
+                        )
+                    }
+
+                    _pokemonDetail.postValue(pokeUiState)
                 }
             }
         }
+
+        pokeRepository.getPokemonSpecies(name = name).collect { pokemonSpeciesEntity ->
+
+            when (pokemonSpeciesEntity) {
+                is NetworkResponse.Error -> {
+                    val state = PokemonSpeciesUiState(
+                        isError = true,
+                        errorMessage = pokemonSpeciesEntity.error
+                    )
+                    _pokemonSpecies.postValue(state)
+                }
+
+                NetworkResponse.Loading -> Unit
+
+                is NetworkResponse.Success -> {
+                    val speciesState = PokemonSpeciesUiState(
+                        description = pokemonSpeciesEntity.data.description
+                    )
+
+                    _pokemonSpecies.postValue(speciesState)
+                }
+            }
+        }
+
     }
 
 }
 
 data class PokemonUiState(
-    val id: String = "",
-    val pokeName: String = "",
-    val pokeImgUrl : String = "",
+    val isError: Boolean = false,
+    val errorMessage: String = "",
+    val weight: String = "",
+    val height: String = "",
+    val moves: List<String> = emptyList(),
     val pokeTypes: List<String> = emptyList(),
-    val pokeStat: String = "",
-    val pokeStatProgress: Int = 0,
-    val pokemonColor:Int = 0,
+    val hpStat: String = "",
+    val hpStatProgress: Int = 0,
+    val attackStat: String = "",
+    val attackStatProgress: Int = 0,
+    val defenseStat: String = "",
+    val defenseStatProgress: Int = 0,
+    val specialAttackStat: String = "",
+    val specialAttackStatProgress: Int = 0,
+    val specialDefenseStat: String = "",
+    val specialDefenseStatProgress: Int = 0,
+    val speedStat: String = "",
+    val speedStatProgress: Int = 0,
+    val pokemonColor: Int = 0
 )
 
 data class PokemonSpeciesUiState(
-    val description:String = ""
+    val isError: Boolean = false,
+    val errorMessage: String = "",
+    val description: String = ""
 )
 
