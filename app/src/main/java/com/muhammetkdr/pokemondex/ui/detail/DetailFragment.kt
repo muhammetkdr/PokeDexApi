@@ -3,10 +3,10 @@ package com.muhammetkdr.pokemondex.ui.detail
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.muhammetkdr.pokemondex.R
+import com.muhammetkdr.pokemondex.base.BaseFragment
 import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.setPokemonImage
@@ -14,17 +14,16 @@ import com.muhammetkdr.pokemondex.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment : Fragment(R.layout.fragment_detail) {
+class DetailFragment : BaseFragment(R.layout.fragment_detail) {
 
     private val binding by inflate(FragmentDetailBinding::bind)
-    private val viewModel: DetailViewModel by viewModels()
+    override val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         observeUi()
-
         viewModel.getPokemon(args.name)
     }
 
@@ -37,13 +36,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 }
 
                 else -> {
-                    with(binding){
+                    with(binding) {
 
-                      ivPokemon.setPokemonImage(args.imgUrl)
+                        ivPokemon.setPokemonImage(args.imgUrl)
 
-                      tvWeight.text = it.weight
-                      tvHeight.text = it.height
-                      tvMoves.text = it.moves.first()
+                        tvWeight.text = it.weight
+                        tvHeight.text = it.height
+                        tvMoves.text = it.moves.first()
                     }
 
 
@@ -58,17 +57,23 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
                         pbHP.setProgress(it.hpStatProgress, true)
                         pbAttack.setProgress(it.attackStatProgress, true)
-                        pbDef.setProgress(it.defenseStatProgress,true)
-                        pbSpAtk.setProgress(it.specialAttackStatProgress,true)
-                        pbSpDef.setProgress(it.specialDefenseStatProgress,true)
-                        pbSpeed.setProgress(it.speedStatProgress,true)
+                        pbDef.setProgress(it.defenseStatProgress, true)
+                        pbSpAtk.setProgress(it.specialAttackStatProgress, true)
+                        pbSpDef.setProgress(it.specialDefenseStatProgress, true)
+                        pbSpeed.setProgress(it.speedStatProgress, true)
 
-                        pbHP.progressTintList = ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
-                        pbAttack.progressTintList = ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
-                        pbDef.progressTintList = ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
-                        pbSpAtk.progressTintList = ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
-                        pbSpDef.progressTintList = ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
-                        pbSpeed.progressTintList = ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
+                        pbHP.progressTintList =
+                            ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
+                        pbAttack.progressTintList =
+                            ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
+                        pbDef.progressTintList =
+                            ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
+                        pbSpAtk.progressTintList =
+                            ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
+                        pbSpDef.progressTintList =
+                            ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
+                        pbSpeed.progressTintList =
+                            ColorStateList.valueOf(requireContext().getColor(it.pokemonColor))
 
                     }
 
@@ -78,10 +83,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         viewModel.pokemonStateSpecies.observeIfNotNull(viewLifecycleOwner) {
             when {
-                it.isError->{
+                it.isError -> {
 
                 }
-                else ->{
+
+                else -> {
                     binding.tvDescr.text = it.description
                 }
             }

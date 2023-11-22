@@ -2,19 +2,22 @@ package com.muhammetkdr.pokemondex.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.muhammetkdr.pokemondex.base.BaseViewModel
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
-import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
+import com.muhammetkdr.pokemondex.domain.usecase.GetPokemonInfoUseCase
+import com.muhammetkdr.pokemondex.domain.usecase.GetPokemonSpeciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val pokeRepository: PokeRepository
-) : ViewModel() {
+    private val getPokemonInfoUseCase: GetPokemonInfoUseCase,
+    private val getPokemonSpeciesUseCase: GetPokemonSpeciesUseCase
+) : BaseViewModel() {
 
     private val _pokemonDetail = MutableLiveData<PokemonUiState>()
     val pokemonDetail: LiveData<PokemonUiState> = _pokemonDetail
@@ -22,9 +25,11 @@ class DetailViewModel @Inject constructor(
     private val _pokemonSpecies = MutableLiveData<PokemonSpeciesUiState>()
     val pokemonStateSpecies: LiveData<PokemonSpeciesUiState> = _pokemonSpecies
 
-    fun getPokemon(name: String) = viewModelScope.launch(Dispatchers.IO) {
+    fun getPokemon(name: String) = viewModelScope.launch{
 
-        pokeRepository.getPokemonInfo(name = name).collect { pokemonEntity ->
+        getPokemonInfoUseCase(name = name)
+            .onStart { showIndicator() }
+            .collect { pokemonEntity ->
             when (pokemonEntity) {
                 is NetworkResponse.Error -> {
                     val state = PokemonUiState(
@@ -65,7 +70,9 @@ class DetailViewModel @Inject constructor(
             }
         }
 
-        pokeRepository.getPokemonSpecies(name = name).collect { pokemonSpeciesEntity ->
+        getPokemonSpeciesUseCase(name = name)
+            .onCompletion { hideIndicator() }
+            .collect { pokemonSpeciesEntity ->
 
             when (pokemonSpeciesEntity) {
                 is NetworkResponse.Error -> {

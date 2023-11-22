@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.muhammetkdr.pokemondex.R
+import com.muhammetkdr.pokemondex.base.BaseFragment
 import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,10 +18,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val binding by inflate(FragmentHomeBinding::bind)
-    private val viewModel by viewModels<HomeViewModel>()
+    override val viewModel by viewModels<HomeViewModel>()
     private val adapter: PokeAdapter by lazy { PokeAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

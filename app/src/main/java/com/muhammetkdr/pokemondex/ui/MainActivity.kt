@@ -1,7 +1,7 @@
 package com.muhammetkdr.pokemondex.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.muhammetkdr.pokemondex.R
 import dagger.hilt.android.AndroidEntryPoint
 

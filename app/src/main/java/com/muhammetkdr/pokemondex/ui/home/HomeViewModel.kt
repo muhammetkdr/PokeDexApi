@@ -3,34 +3,39 @@ package com.muhammetkdr.pokemondex.ui.home
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.muhammetkdr.pokemondex.base.BaseViewModel
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val pokeRepository: PokeRepository) :
-    ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val pokeRepository: PokeRepository
+) : BaseViewModel() {
 
     init {
         getPokemonList()
     }
 
-    private val _pokeUiState: MutableLiveData<HomeScreenUiState> =
-        MutableLiveData(HomeScreenUiState.initial())
+    private val _pokeUiState: MutableLiveData<HomeScreenUiState> = MutableLiveData(HomeScreenUiState.initial())
     val pokeState: LiveData<HomeScreenUiState> = _pokeUiState
 
-    private val _pokemons: MutableLiveData<List<PokemonItem>> = MutableLiveData(emptyList())
+    private val _pokemons: MutableList<PokemonItem> = mutableListOf()
 
     private val _pokemonsQuery = MutableLiveData<List<PokemonItem>>()
     val pokemonsQuery: LiveData<List<PokemonItem>> = _pokemonsQuery
 
-    private fun getPokemonList() = viewModelScope.launch(Dispatchers.IO) {
-        pokeRepository.getPokemonList(150, 0).collect { response ->
+    private fun getPokemonList() = viewModelScope.launch {
+        pokeRepository.getPokemonList(150, 0)
+            .onStart { showIndicator() }
+            .onCompletion { hideIndicator() }
+            .collect { response ->
             when (response) {
                 is NetworkResponse.Error -> {
                     _pokeUiState.postValue(
@@ -65,19 +70,20 @@ class HomeViewModel @Inject constructor(private val pokeRepository: PokeReposito
     }
 
     fun setPokemonListData(pokemons: List<PokemonItem>) = viewModelScope.launch {
-        _pokemons.postValue(pokemons)
+        _pokemons.clear()
+        _pokemons.addAll(pokemons)
     }
 
     fun filterPokemonQuery(query: Editable?) {
         viewModelScope.launch(Dispatchers.IO) {
             if (query.isNullOrBlank() || query.isEmpty()) {
-                _pokemonsQuery.postValue(_pokemons.value)
+                _pokemonsQuery.postValue(_pokemons)
                 return@launch
             }
 
             val queryList = mutableListOf<PokemonItem>()
 
-            _pokemons.value?.forEach {
+            _pokemons.forEach {
                 if (it.pokeName.contains(
                         query.toString(),
                         true

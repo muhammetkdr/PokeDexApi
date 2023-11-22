@@ -72,4 +72,7 @@ dependencies {
     ksp ("com.google.dagger:hilt-compiler:2.48.1")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    //lottie
+    implementation ("com.airbnb.android:lottie:6.1.0")
 }

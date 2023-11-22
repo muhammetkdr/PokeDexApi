@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/statsConstraintL"
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/statsConstraintL"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,7 +8,8 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="24dp"
     android:paddingStart="12dp"
-    android:paddingBottom="12dp">
+    android:paddingBottom="12dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/tvHP"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center"
-        android:text="44"
+        tools:text="44"
         android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="@+id/tvAttackValue"
         app:layout_constraintStart_toStartOf="@+id/tvAttackValue"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="44"
+        tools:text="44"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/tvAttack"
         app:layout_constraintEnd_toEndOf="@+id/tvDefValue"
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="44"
+        tools:text="44"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/tvDef"
         app:layout_constraintEnd_toEndOf="@+id/tvSpAttackValue"
@@ -141,7 +141,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="44"
+        tools:text="44"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/tvSpAttack"
         app:layout_constraintEnd_toEndOf="@+id/tvSpDefenseValue"
@@ -179,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="44"
+        tools:text="44"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/tvSpDefense"
         app:layout_constraintEnd_toEndOf="@+id/tvSpeedValue"
@@ -218,7 +218,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:gravity="center"
-        android:text="447"
+        tools:text="446"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="@+id/tvSpeed"
         app:layout_constraintStart_toEndOf="@id/tvSpeed"
