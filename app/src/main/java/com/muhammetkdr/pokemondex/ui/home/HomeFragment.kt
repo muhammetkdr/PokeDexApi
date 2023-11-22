@@ -76,10 +76,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     handleError(it.errorMessage)
                 }
 
-                it.isLoading -> {
-                    handleLoading()
-                }
-
                 else -> {
                     handleSuccess(it.pokeItems)
                 }
@@ -96,8 +92,5 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     }
 
-    private fun handleLoading() {
-
-    }
 
 }

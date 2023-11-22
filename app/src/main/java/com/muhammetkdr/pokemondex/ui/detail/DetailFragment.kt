@@ -19,12 +19,18 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
     private val binding by inflate(FragmentDetailBinding::bind)
     override val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
+    private val adapter: SpeciesAdapter by lazy { SpeciesAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         observeUi()
+        initRv()
         viewModel.getPokemon(args.name)
+    }
+
+    private fun initRv() {
+        binding.rvTypes.adapter = adapter
     }
 
     private fun observeUi() {
@@ -45,6 +51,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
                         tvMoves.text = it.moves.first()
                     }
 
+                    adapter.updatePokemonList(it.pokeTypes)
 
                     with(binding.statsContainer) {
 

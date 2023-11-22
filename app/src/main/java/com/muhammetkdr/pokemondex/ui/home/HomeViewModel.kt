@@ -23,7 +23,8 @@ class HomeViewModel @Inject constructor(
         getPokemonList()
     }
 
-    private val _pokeUiState: MutableLiveData<HomeScreenUiState> = MutableLiveData(HomeScreenUiState.initial())
+    private val _pokeUiState: MutableLiveData<HomeScreenUiState> =
+        MutableLiveData(HomeScreenUiState.initial())
     val pokeState: LiveData<HomeScreenUiState> = _pokeUiState
 
     private val _pokemons: MutableList<PokemonItem> = mutableListOf()
@@ -36,37 +37,35 @@ class HomeViewModel @Inject constructor(
             .onStart { showIndicator() }
             .onCompletion { hideIndicator() }
             .collect { response ->
-            when (response) {
-                is NetworkResponse.Error -> {
-                    _pokeUiState.postValue(
-                        HomeScreenUiState(
-                            isError = true,
-                            errorMessage = response.error
-                        )
-                    )
-                }
-
-                NetworkResponse.Loading -> {
-                    _pokeUiState.postValue(HomeScreenUiState(isLoading = true))
-                }
-
-                is NetworkResponse.Success -> {
-                    val pokemons = mutableListOf<PokemonItem>()
-                    val pokeUiItem = response.data.mapIndexed { index, data ->
-                        PokemonItem(
-                            pokeName = data.pokeName,
-                            pokeId = (index + 1).getPokemonId(),
-                            imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png"
+                when (response) {
+                    is NetworkResponse.Error -> {
+                        _pokeUiState.postValue(
+                            HomeScreenUiState(
+                                isError = true,
+                                errorMessage = response.error
+                            )
                         )
                     }
 
-                    pokeUiItem.forEach {
-                        pokemons.add(it)
+                    NetworkResponse.Loading -> Unit
+
+                    is NetworkResponse.Success -> {
+                        val pokemons = mutableListOf<PokemonItem>()
+                        val pokeUiItem = response.data.mapIndexed { index, data ->
+                            PokemonItem(
+                                pokeName = data.pokeName,
+                                pokeId = (index + 1).getPokemonId(),
+                                imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png"
+                            )
+                        }
+
+                        pokeUiItem.forEach {
+                            pokemons.add(it)
+                        }
+                        _pokeUiState.postValue(HomeScreenUiState(pokemons))
                     }
-                    _pokeUiState.postValue(HomeScreenUiState(pokemons))
                 }
             }
-        }
     }
 
     fun setPokemonListData(pokemons: List<PokemonItem>) = viewModelScope.launch {
@@ -105,12 +104,11 @@ class HomeViewModel @Inject constructor(
 
 data class HomeScreenUiState(
     val pokeItems: List<PokemonItem> = emptyList(),
-    val isLoading: Boolean = false,
     val isError: Boolean = false,
     val errorMessage: String = ""
 ) {
     companion object {
-        fun initial() = HomeScreenUiState(isLoading = true)
+        fun initial() = HomeScreenUiState()
     }
 }
 
