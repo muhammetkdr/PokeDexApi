@@ -3,6 +3,10 @@ package com.muhammetkdr.pokemondex.common
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.muhammetkdr.pokemondex.R
+import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
+import com.muhammetkdr.pokemondex.data.dto.pokemonlist.PokemonList
+import com.muhammetkdr.pokemondex.domain.model.PokemonListEntity
+import retrofit2.Response
 
 
 fun ImageView.setPokemonImage(pokePath: String?) {
@@ -48,4 +52,24 @@ fun getPokemonColorByType(pokemonType: String): Int = when (pokemonType) {
     "water" -> R.color.background_type_water
 
     else -> R.color.background_type_normal
+}
+
+fun <I : Any, O : Any> NetworkResponse<I>.mapNetworkResult(mapper: I.() -> O): NetworkResponse<O> {
+    return when (this) {
+        is NetworkResponse.Error -> NetworkResponse.Error(this.error)
+        is NetworkResponse.Success -> NetworkResponse.Success(mapper.invoke(this.data))
+        NetworkResponse.Loading -> NetworkResponse.Loading
+    }
+}
+
+inline fun <I, O> I.mapTo(crossinline mapper: (I) -> O): O {
+    return mapper(this)
+}
+
+fun Response<PokemonList>.toPokemonList(): List<PokemonListEntity> {
+    return body()!!.results!!.map {
+        PokemonListEntity(
+            it.name.orEmpty()
+        )
+    }
 }

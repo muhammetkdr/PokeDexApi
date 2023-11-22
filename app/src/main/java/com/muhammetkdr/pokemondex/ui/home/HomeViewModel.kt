@@ -5,15 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.muhammetkdr.pokemondex.common.NetworkResponse
+import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.data.source.PokeRemoteDataSource
+import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemoteDataSource) :
+class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRepository) :
     ViewModel() {
 
     init {
@@ -47,15 +48,15 @@ class HomeViewModel @Inject constructor(private val remoteDataSource: PokeRemote
 
                 is NetworkResponse.Success -> {
                     val pokemons = mutableListOf<PokemonItem>()
-                    val pokeUiItem = response.data.results?.mapIndexed { index, data ->
+                    val pokeUiItem = response.data.mapIndexed { index, data ->
                         PokemonItem(
-                            pokeName = data.name!!,
+                            pokeName = data.pokeNames,
                             pokeId = (index + 1).getPokemonId(),
                             imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png"
                         )
                     }
 
-                    pokeUiItem?.forEach {
+                    pokeUiItem.forEach {
                         pokemons.add(it)
                     }
                     _pokeUiState.postValue(HomeScreenUiState(pokemons))

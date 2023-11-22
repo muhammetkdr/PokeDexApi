@@ -1,4 +1,4 @@
-package com.muhammetkdr.pokemondex.common
+package com.muhammetkdr.pokemondex.common.networkresponse
 
 sealed class NetworkResponse<out T : Any> {
     data class Success<out T : Any>(val data: T) : NetworkResponse<T>()

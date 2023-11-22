@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.muhammetkdr.pokemondex.common.NetworkResponse
+import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.common.getPokemonColorByType
 import com.muhammetkdr.pokemondex.common.setPokemonImage
 import com.muhammetkdr.pokemondex.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailFragment @Inject constructor() : Fragment() {
+class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!

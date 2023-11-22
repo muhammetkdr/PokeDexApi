@@ -16,10 +16,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment @Inject constructor() : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by inflate(FragmentHomeBinding::bind)
     private val viewModel by viewModels<HomeViewModel>()
