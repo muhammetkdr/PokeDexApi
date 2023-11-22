@@ -21,43 +21,43 @@ fun ImageView.setPokemonImage(pokePath: String?) {
 }
 
 fun getPokemonColorByType(pokemonType: String): Int = when (pokemonType) {
-    "bug" -> R.color.background_type_bug
+    "bug" -> R.color.pokemon_type_bug
 
-    "dark" -> R.color.background_type_dark
+    "dark" -> R.color.pokemon_type_dark
 
-    "dragon" -> R.color.background_type_dragon
+    "dragon" -> R.color.pokemon_type_dragon
 
-    "electric" -> R.color.background_type_electric
+    "electric" -> R.color.pokemon_type_electric
 
-    "fairy" -> R.color.background_type_fairy
+    "fairy" -> R.color.pokemon_type_fairy
 
-    "fighting" -> R.color.background_type_fighting
+    "fighting" -> R.color.pokemon_type_fighting
 
-    "fire" -> R.color.background_type_fire
+    "fire" -> R.color.pokemon_type_fire
 
-    "flying" -> R.color.background_type_flying
+    "flying" -> R.color.pokemon_type_flying
 
-    "ghost" -> R.color.background_type_ghost
+    "ghost" -> R.color.pokemon_type_ghost
 
-    "grass" -> R.color.background_type_grass
+    "grass" -> R.color.pokemon_type_grass
 
-    "ground" -> R.color.background_type_ground
+    "ground" -> R.color.pokemon_type_ground
 
-    "ice" -> R.color.background_type_ice
+    "ice" -> R.color.pokemon_type_ice
 
-    "normal" -> R.color.background_type_normal
+    "normal" -> R.color.pokemon_type_normal
 
-    "poison" -> R.color.background_type_poison
+    "poison" -> R.color.pokemon_type_poison
 
-    "psychic" -> R.color.background_type_psychic
+    "psychic" -> R.color.pokemon_type_psychic
 
-    "rock" -> R.color.background_type_rock
+    "rock" -> R.color.pokemon_type_rock
 
-    "steel" -> R.color.background_type_steel
+    "steel" -> R.color.pokemon_type_steel
 
-    "water" -> R.color.background_type_water
+    "water" -> R.color.pokemon_type_water
 
-    else -> R.color.background_type_normal
+    else -> R.color.pokemon_type_normal
 }
 
 inline fun <I, O> I.mapTo(crossinline mapper: (I) -> O): O {

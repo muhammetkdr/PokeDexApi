@@ -11,6 +11,7 @@ import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.setPokemonImage
 import com.muhammetkdr.pokemondex.databinding.FragmentDetailBinding
+import com.muhammetkdr.pokemondex.ui.detail.adapter.SpeciesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +49,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
 
                         tvWeight.text = it.weight
                         tvHeight.text = it.height
-                        tvMoves.text = it.moves.first()
+                        tvMoves.text = it.moves.first() // TODO BURADA 2 TANE GELEBİLİR DÜZELT
                     }
 
                     adapter.updatePokemonList(it.pokeTypes)

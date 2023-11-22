@@ -1,7 +1,8 @@
-package com.muhammetkdr.pokemondex.ui.detail
+package com.muhammetkdr.pokemondex.ui.detail.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.muhammetkdr.pokemondex.common.getPokemonColorByType
 import com.muhammetkdr.pokemondex.common.inflateAdapterItem
 import com.muhammetkdr.pokemondex.databinding.ItemPokemonTypeBinding
 
@@ -13,7 +14,14 @@ class SpeciesAdapter : RecyclerView.Adapter<SpeciesAdapter.SpeciesViewHolder>() 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
 
-            binding.tvType.text = item
+            val textColor = getPokemonColorByType(item)
+
+            with(binding) {
+                tvType.text = item
+
+                val color = tvType.context.getColor(textColor)
+                tvType.setTextColor(color)
+            }
         }
     }
 
