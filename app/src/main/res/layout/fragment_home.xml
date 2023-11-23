@@ -34,9 +34,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_4dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:hint="@string/search"
         app:boxBackgroundColor="@color/white"
         android:textColorHint="@color/light_blue"
@@ -50,7 +49,9 @@
         app:startIconTint="@color/identity_primary"
         app:hintTextColor="@color/teal_200"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPokedex"
+        app:layout_constraintTop_toTopOf="@+id/cvOrder"
+        app:layout_constraintBottom_toBottomOf="@+id/cvOrder"
+        app:layout_constraintEnd_toStartOf="@+id/cvOrder"
         app:startIconDrawable="@drawable/ic_search_blue">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -63,6 +64,26 @@
             android:textSize="@dimen/_12sp"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="@color/white"
+
+        app:layout_constraintTop_toBottomOf="@+id/ivPokemonLogo">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/ic_search_number"
+            android:padding="@dimen/_8dp">
+
+        </ImageView>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
