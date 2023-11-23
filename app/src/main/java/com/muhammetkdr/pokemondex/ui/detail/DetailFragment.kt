@@ -35,7 +35,6 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
     }
 
     private fun observeUi() {
-
         viewModel.pokemonDetail.observeIfNotNull(viewLifecycleOwner) {
             when {
                 it.isError -> {
@@ -43,57 +42,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
                 }
 
                 else -> {
-                    with(binding) {
-
-                        pokeName.text = args.name
-                        pokeId.text = args.id
-                        ivPokeImg.setPokemonImage(args.imgUrl)
-
-                        tvWeight.text = it.weight
-                        tvHeight.text = it.height
-
-                        tvFirstMove.text = it.moves.first()
-
-                        if (it.moves.size > ONE) {
-                            tvSecondMove.text = it.moves[SECOND_ITEM]
-                        }
-
-                        adapter.updatePokemonList(it.pokeTypes)
-
-                        tvHPValue.text = it.hpStat
-                        tvAttackValue.text = it.attackStat
-                        tvDefValue.text = it.defenseStat
-                        tvSpAttackValue.text = it.specialAttackStat
-                        tvSpDefenseValue.text = it.specialDefenseStat
-                        tvSpeedValue.text = it.speedStat
-
-                        pbHP.setProgress(it.hpStatProgress, true)
-                        pbAttack.setProgress(it.attackStatProgress, true)
-                        pbDef.setProgress(it.defenseStatProgress, true)
-                        pbSpAtk.setProgress(it.specialAttackStatProgress, true)
-                        pbSpDef.setProgress(it.specialDefenseStatProgress, true)
-                        pbSpeed.setProgress(it.speedStatProgress, true)
-
-                        pbHP.setProgressColor(it.pokemonColor)
-                        pbAttack.setProgressColor(it.pokemonColor)
-                        pbDef.setProgressColor(it.pokemonColor)
-                        pbSpAtk.setProgressColor(it.pokemonColor)
-                        pbSpDef.setProgressColor(it.pokemonColor)
-                        pbSpeed.setProgressColor(it.pokemonColor)
-
-                        clDetail.setBackgroundColor(requireContext().getColor(it.pokemonColor))
-
-                        tvAbout.setColor(it.pokemonColor)
-                        tvBaseStats.setColor(it.pokemonColor)
-
-                        tvHp.setColor(it.pokemonColor)
-                        tvAtk.setColor(it.pokemonColor)
-                        tvDef.setColor(it.pokemonColor)
-                        tvSatk.setColor(it.pokemonColor)
-                        tvSdef.setColor(it.pokemonColor)
-                        tvSpd.setColor(it.pokemonColor)
-                    }
-
+                    handlePokemonDetailSuccess(it)
                 }
             }
         }
@@ -105,10 +54,64 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
                 }
 
                 else -> {
-                    binding.root.visibility = View.VISIBLE
-                    binding.tvDescription.text = it.description
+                    with(binding){
+                        root.visibility = View.VISIBLE
+                        tvDescription.text = it.description
+                    }
                 }
             }
+        }
+    }
+
+    private fun handlePokemonDetailSuccess(it: PokemonUiState) {
+        with(binding) {
+            pokeName.text = args.name
+            pokeId.text = args.id
+            ivPokeImg.setPokemonImage(args.imgUrl)
+
+            tvWeight.text = it.weight
+            tvHeight.text = it.height
+
+            tvFirstMove.text = it.moves.first()
+
+            if (it.moves.size > ONE) {
+                tvSecondMove.text = it.moves[SECOND_ITEM]
+            }
+
+            adapter.updatePokemonList(it.pokeTypes)
+
+            tvHPValue.text = it.hpStat
+            tvAttackValue.text = it.attackStat
+            tvDefValue.text = it.defenseStat
+            tvSpAttackValue.text = it.specialAttackStat
+            tvSpDefenseValue.text = it.specialDefenseStat
+            tvSpeedValue.text = it.speedStat
+
+            pbHP.setProgress(it.hpStatProgress, true)
+            pbAttack.setProgress(it.attackStatProgress, true)
+            pbDef.setProgress(it.defenseStatProgress, true)
+            pbSpAtk.setProgress(it.specialAttackStatProgress, true)
+            pbSpDef.setProgress(it.specialDefenseStatProgress, true)
+            pbSpeed.setProgress(it.speedStatProgress, true)
+
+            pbHP.setProgressColor(it.pokemonColor)
+            pbAttack.setProgressColor(it.pokemonColor)
+            pbDef.setProgressColor(it.pokemonColor)
+            pbSpAtk.setProgressColor(it.pokemonColor)
+            pbSpDef.setProgressColor(it.pokemonColor)
+            pbSpeed.setProgressColor(it.pokemonColor)
+
+            clDetail.setBackgroundColor(requireContext().getColor(it.pokemonColor))
+
+            tvAbout.setColor(it.pokemonColor)
+            tvBaseStats.setColor(it.pokemonColor)
+
+            tvHp.setColor(it.pokemonColor)
+            tvAtk.setColor(it.pokemonColor)
+            tvDef.setColor(it.pokemonColor)
+            tvSatk.setColor(it.pokemonColor)
+            tvSdef.setColor(it.pokemonColor)
+            tvSpd.setColor(it.pokemonColor)
         }
     }
 
@@ -125,7 +128,6 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
     companion object {
         private const val SECOND_ITEM = 1
         private const val ONE = 1
-
     }
 
 }
