@@ -2,6 +2,7 @@ package com.muhammetkdr.pokemondex.data.di
 
 import com.muhammetkdr.pokemondex.common.Constants.BASE_URL
 import com.muhammetkdr.pokemondex.data.api.PokeApi
+import com.muhammetkdr.pokemondex.utils.interceptor.NetworkStatusInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +19,11 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(
+        networkStatusInterceptor: NetworkStatusInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder().readTimeout(60, TimeUnit.SECONDS)
+            .addInterceptor(networkStatusInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()
     }

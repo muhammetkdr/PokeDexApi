@@ -57,6 +57,10 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
                     with(binding){
                         root.visibility = View.VISIBLE
                         tvDescription.text = it.description
+
+                        pokeName.text = args.name
+                        pokeId.text = args.id
+                        ivPokeImg.setPokemonImage(args.imgUrl)
                     }
                 }
             }
@@ -65,10 +69,6 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
 
     private fun handlePokemonDetailSuccess(it: PokemonUiState) {
         with(binding) {
-            pokeName.text = args.name
-            pokeId.text = args.id
-            ivPokeImg.setPokemonImage(args.imgUrl)
-
             tvWeight.text = it.weight
             tvHeight.text = it.height
 
