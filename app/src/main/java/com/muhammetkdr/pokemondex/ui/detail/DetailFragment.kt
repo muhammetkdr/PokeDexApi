@@ -129,5 +129,4 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
         private const val SECOND_ITEM = 1
         private const val ONE = 1
     }
-
 }

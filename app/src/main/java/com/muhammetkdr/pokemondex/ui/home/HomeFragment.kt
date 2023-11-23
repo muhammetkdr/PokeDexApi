@@ -14,6 +14,7 @@ import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.show
 import com.muhammetkdr.pokemondex.common.showSnackbar
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
+import com.muhammetkdr.pokemondex.ui.home.adapter.PokeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

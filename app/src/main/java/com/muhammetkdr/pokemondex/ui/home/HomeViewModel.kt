@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
     val pokemonsQuery: LiveData<List<PokemonItem>> = _pokemonsQuery
 
     private fun getPokemonList() = viewModelScope.launch {
-        pokeRepository.getPokemonList(150, 0)
+        pokeRepository.getPokemonList(limit = limit, offset = offset)
             .onStart { showIndicator() }
             .onCompletion { hideIndicator() }
             .collect { response ->
@@ -47,7 +47,7 @@ class HomeViewModel @Inject constructor(
                         )
                     }
 
-                    NetworkResponse.Loading -> Unit
+                    NetworkResponse.Loading -> Unit // loading state has been handled by base structure
 
                     is NetworkResponse.Success -> {
                         val pokemons = mutableListOf<PokemonItem>()
@@ -96,20 +96,8 @@ class HomeViewModel @Inject constructor(
         return "#${this.toString().padStart(3, '0')}"
     }
 
-}
-
-data class HomeScreenUiState(
-    val pokeItems: List<PokemonItem> = emptyList(),
-    val isError: Boolean = false,
-    val errorMessage: String = ""
-) {
-    companion object {
-        fun initial() = HomeScreenUiState()
+    companion object{
+        private const val limit = 150
+        private const val offset = 0
     }
 }
-
-data class PokemonItem(
-    val pokeName: String = "",
-    val pokeId: String = "",
-    val imageUrl: String = ""
-)

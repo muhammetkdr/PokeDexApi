@@ -1,10 +1,11 @@
-package com.muhammetkdr.pokemondex.ui.home
+package com.muhammetkdr.pokemondex.ui.home.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.muhammetkdr.pokemondex.common.inflateAdapterItem
 import com.muhammetkdr.pokemondex.common.setPokemonImage
 import com.muhammetkdr.pokemondex.databinding.ItemPokemonsBinding
+import com.muhammetkdr.pokemondex.ui.home.PokemonItem
 
 class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
 
