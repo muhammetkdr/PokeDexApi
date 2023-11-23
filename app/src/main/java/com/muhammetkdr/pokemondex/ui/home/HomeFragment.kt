@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.muhammetkdr.pokemondex.R
 import com.muhammetkdr.pokemondex.base.BaseFragment
 import com.muhammetkdr.pokemondex.common.inflate
+import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -64,10 +65,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun observeUi() {
-        viewModel.pokemonsQuery.observe(viewLifecycleOwner) { state ->
-            state?.let {
+        viewModel.pokemonsQuery.observeIfNotNull(viewLifecycleOwner) {
                 adapter.updatePokemonList(it)
-            }
         }
 
         viewModel.pokeState.observe(viewLifecycleOwner) {

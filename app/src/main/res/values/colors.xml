@@ -43,4 +43,5 @@
     <color name="pokemon_type_steel">#B7B9D0</color>
     <color name="pokemon_type_water">#6493EB</color>
     <color name="identity_primary">#DC0A2D</color>
+    <color name="grayscale">#666666</color>
 </resources>
