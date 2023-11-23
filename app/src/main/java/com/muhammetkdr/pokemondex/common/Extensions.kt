@@ -77,7 +77,7 @@ fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
         PokemonEntity(
             weight = weight.toString(),
             height = height.toString(),
-            moves = moves!!.map { it.move!!.name.orEmpty() },
+            moves = abilities!!.map { it.ability!!.name.orEmpty() },
             pokeTypes = types!!.map {
                 it.type!!.name!!
             },
