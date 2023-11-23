@@ -3,6 +3,7 @@ package com.muhammetkdr.pokemondex.ui.detail
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.muhammetkdr.pokemondex.R
 import com.muhammetkdr.pokemondex.base.BaseFragment
@@ -11,14 +12,15 @@ import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.setColor
 import com.muhammetkdr.pokemondex.common.setPokemonImage
 import com.muhammetkdr.pokemondex.common.setProgressColor
-import com.muhammetkdr.pokemondex.databinding.FragmentDetail2Binding
+import com.muhammetkdr.pokemondex.common.showSnackbar
+import com.muhammetkdr.pokemondex.databinding.FragmentDetailBinding
 import com.muhammetkdr.pokemondex.ui.detail.adapter.SpeciesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment : BaseFragment(R.layout.fragment_detail2) {
+class DetailFragment : BaseFragment(R.layout.fragment_detail) {
 
-    private val binding by inflate(FragmentDetail2Binding::bind)
+    private val binding by inflate(FragmentDetailBinding::bind)
     override val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private val adapter: SpeciesAdapter by lazy { SpeciesAdapter() }
@@ -28,11 +30,8 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail2) {
 
         observeUi()
         initRv()
+        handleBackPress()
         viewModel.getPokemon(args.name)
-    }
-
-    private fun initRv() {
-        binding.rvPokeTypes.adapter = adapter
     }
 
     private fun observeUi() {
@@ -40,7 +39,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail2) {
         viewModel.pokemonDetail.observeIfNotNull(viewLifecycleOwner) {
             when {
                 it.isError -> {
-                    binding.tvDescription.text = it.errorMessage
+                    requireView().showSnackbar(it.errorMessage)
                 }
 
                 else -> {
@@ -53,7 +52,11 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail2) {
                         tvWeight.text = it.weight
                         tvHeight.text = it.height
 
-                        tvFirstMove.text = it.moves.first() // TODO BURADA 2 TANE GELEBİLİR DÜZELT
+                        tvFirstMove.text = it.moves.first()
+
+                        if (it.moves.size > ONE) {
+                            tvSecondMove.text = it.moves[SECOND_ITEM]
+                        }
 
                         adapter.updatePokemonList(it.pokeTypes)
 
@@ -98,7 +101,7 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail2) {
         viewModel.pokemonStateSpecies.observeIfNotNull(viewLifecycleOwner) {
             when {
                 it.isError -> {
-
+                    requireView().showSnackbar(it.errorMessage)
                 }
 
                 else -> {
@@ -107,6 +110,22 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail2) {
                 }
             }
         }
+    }
+
+    private fun handleBackPress() {
+        binding.ivBackPress.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun initRv() {
+        binding.rvPokeTypes.adapter = adapter
+    }
+
+    companion object {
+        private const val SECOND_ITEM = 1
+        private const val ONE = 1
+
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.muhammetkdr.pokemondex.R
 import com.muhammetkdr.pokemondex.data.dto.pokemon.Pokemon
 import com.muhammetkdr.pokemondex.data.dto.pokemonlist.PokemonList
@@ -27,7 +28,7 @@ fun ImageView.setPokemonImage(pokePath: String?) {
         .into(this)
 }
 
-fun getPokemonColorByType(pokemonType: String): Int = when (pokemonType) {
+fun getPokemonColorByType(pokemonType: String): Int = when (pokemonType.lowercase()) {
     "bug" -> R.color.pokemon_type_bug
 
     "dark" -> R.color.pokemon_type_dark
@@ -82,11 +83,11 @@ fun Response<PokemonList>.toPokemonListEntity(): List<PokemonListEntity> {
 fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
     return body()!!.run {
         PokemonEntity(
-            weight = weight.toString(),
-            height = height.toString(),
-            moves = abilities!!.map { it.ability!!.name.orEmpty() },
+            weight = ((weight!!*0.1f).toString().take(5) + " kg").replace('.',','),
+            height = ((height!!*0.1f).toString().take(5) + " m").replace('.',','),
+            moves = abilities!!.map { it.ability!!.name.orEmpty().capitalizeMovesData() },
             pokeTypes = types!!.map {
-                it.type!!.name!!
+                it.type!!.name!!.capitalizeWords()
             },
             hpStat =  stats!!.first { it.stat!!.name == "hp" }.baseStat.toString(),
             hpStatProgress = stats.first { it.stat!!.name == "hp" }.baseStat ?: 0,
@@ -137,10 +138,22 @@ fun String.capitalizeWords(): String = split(" ").joinToString(" ") { word ->
     }
 }
 
+fun String.capitalizeMovesData(): String = split("-").joinToString("-") { word ->
+    word.replaceFirstChar {
+        if (it.isLowerCase()) it.titlecase(
+            Locale.ROOT
+        ) else it.toString()
+    }
+}
+
 fun View.show(){
     this.visibility = View.VISIBLE
 }
 
 fun View.gone(){
     this.visibility = View.GONE
+}
+
+fun View.showSnackbar(msg: String) {
+    Snackbar.make(this, msg, Snackbar.LENGTH_LONG).show()
 }

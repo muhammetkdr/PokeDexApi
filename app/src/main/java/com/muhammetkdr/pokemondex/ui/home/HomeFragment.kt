@@ -7,12 +7,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.muhammetkdr.pokemondex.R
 import com.muhammetkdr.pokemondex.base.BaseFragment
 import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.show
+import com.muhammetkdr.pokemondex.common.showSnackbar
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -55,21 +55,19 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun initRvAdapter() {
         binding.rvPoke.adapter = adapter
-        binding.rvPoke.layoutManager = GridLayoutManager(requireContext(), 3)
 
         adapter.setOnItemClickListener { id, name, url ->
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id, name, url)
             findNavController().navigate(action)
         }
-
     }
 
     private fun observeUi() {
         viewModel.pokemonsQuery.observeIfNotNull(viewLifecycleOwner) {
-                adapter.updatePokemonList(it)
+            adapter.updatePokemonList(it)
         }
 
-        viewModel.pokeState.observe(viewLifecycleOwner) {
+        viewModel.pokeState.observeIfNotNull(viewLifecycleOwner) {
             when {
                 it.isError -> {
                     handleError(it.errorMessage)
@@ -89,8 +87,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun handleError(errorMessage: String) {
-
+        requireView().showSnackbar(errorMessage)
     }
-
-
 }
