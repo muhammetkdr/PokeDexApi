@@ -58,13 +58,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tvDescr"
-        app:layout_constraintEnd_toStartOf="@+id/tvMoves"
+        app:layout_constraintEnd_toStartOf="@+id/tv_first_move"
         app:layout_constraintStart_toEndOf="@+id/tvWeight"
         app:layout_constraintTop_toBottomOf="@+id/rvTypes"
         tools:text="TextView" />
 
     <TextView
-        android:id="@+id/tvMoves"
+        android:id="@+id/tv_first_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tvDescr"

@@ -18,9 +18,7 @@ class SpeciesAdapter : RecyclerView.Adapter<SpeciesAdapter.SpeciesViewHolder>() 
 
             with(binding) {
                 tvType.text = item
-
-                val color = tvType.context.getColor(textColor)
-                tvType.setTextColor(color)
+                tvType.backgroundTintList = tvType.context.getColorStateList(textColor)
             }
         }
     }

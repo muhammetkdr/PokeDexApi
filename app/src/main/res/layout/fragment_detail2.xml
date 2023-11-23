@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_detail"
     android:layout_width="match_parent"
+    android:visibility="invisible"
+    tools:visibility="visible"
     android:layout_height="match_parent"
     android:background="@color/pokemon_type_bug">
 
@@ -17,10 +20,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPokemon">
+        app:layout_constraintTop_toBottomOf="@+id/ivPoke_img">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rvPokeTypes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
@@ -33,19 +36,19 @@
             tools:listitem="@layout/item_pokemon_type" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvAbout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="@dimen/_16dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="About"
+            android:text="@string/about"
             android:textAlignment="center"
             android:textColor="@color/pokemon_type_bug"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/rvPokeTypes" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -55,7 +58,7 @@
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
+            app:layout_constraintTop_toBottomOf="@+id/tvAbout">
 
             <LinearLayout
                 android:layout_weight="1"
@@ -79,6 +82,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/tvWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="10sp"
@@ -96,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="Weight"
+                    android:text="@string/weight"
                     android:paddingTop="2dp"
                     android:textAlignment="center"
                     android:textColor="#666666"
@@ -135,6 +139,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/tvHeight"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="10sp"
@@ -152,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="Height"
+                    android:text="@string/height"
                     android:paddingTop="2dp"
                     android:textAlignment="center"
                     android:textColor="#666666"
@@ -183,6 +188,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvFirstMove"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="10sp"
@@ -193,6 +199,7 @@
 
 
                     <TextView
+                        android:id="@+id/tvSecondMove"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="10sp"
@@ -208,7 +215,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="Moves"
+                    android:text="@string/moves"
                     android:paddingTop="2dp"
                     android:textAlignment="center"
                     android:textColor="#666666"
@@ -221,14 +228,14 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="@dimen/_16dp"
             android:fontFamily="@font/poppins"
-            android:lineHeight="16sp"
             android:textColor="#1D1D1D"
+            android:textAlignment="center"
             android:textSize="@dimen/_10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +243,7 @@
             tools:text="There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger." />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvBaseStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -248,12 +255,11 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/stats22"
-
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -262,7 +268,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintTop_toBottomOf="@+id/tvBaseStats">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -270,48 +276,48 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvHp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/hp"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="HP" />
+
+                <TextView
+                    android:id="@+id/tvAtk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/atk"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="ATK">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvDef"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/def"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/pokemon_type_bug"
+                    android:textSize="@dimen/_10sp"
+                    tools:text="DEF">
+
+                </TextView>
+
+                <TextView
                     android:id="@+id/tvSatk"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:lineHeight="16sp"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/pokemon_type_bug"
-                    android:textSize="@dimen/_10sp"
-                    tools:text="SATK" />
-
-                <TextView
-                    android:id="@+id/tvSatk2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:lineHeight="16sp"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/pokemon_type_bug"
-                    android:textSize="@dimen/_10sp"
-                    tools:text="SATK">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/tvSatk3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:lineHeight="16sp"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/pokemon_type_bug"
-                    android:textSize="@dimen/_10sp"
-                    tools:text="SATK">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/tvSatk4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:lineHeight="16sp"
+                    android:text="@string/satk"
                     android:textAlignment="textEnd"
                     android:textColor="@color/pokemon_type_bug"
                     android:textSize="@dimen/_10sp"
@@ -321,28 +327,28 @@
 
 
                 <TextView
-                    android:id="@+id/tvSatk5"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvSdef"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:lineHeight="16sp"
+                    android:text="@string/sdef"
                     android:textAlignment="textEnd"
                     android:textColor="@color/pokemon_type_bug"
                     android:textSize="@dimen/_10sp"
-                    tools:text="SATK">
+                    tools:text="SDEF">
 
                 </TextView>
 
                 <TextView
-                    android:id="@+id/tvSatk6"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvSpd"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_bold"
-                    android:lineHeight="16sp"
+                    android:text="@string/spd"
                     android:textAlignment="textEnd"
                     android:textColor="@color/pokemon_type_bug"
                     android:textSize="@dimen/_10sp"
-                    tools:text="SATK">
+                    tools:text="SPD">
 
                 </TextView>
 
@@ -362,12 +368,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/progres1"
+                    android:id="@+id/tvHPValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:lineHeight="16sp"
                     android:textAlignment="center"
                     android:textColor="#1D1D1D"
                     android:textSize="@dimen/_10sp"
@@ -376,12 +381,11 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/progres2"
+                    android:id="@+id/tvAttackValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:lineHeight="16sp"
                     android:textAlignment="center"
                     android:textColor="#1D1D1D"
                     android:textSize="@dimen/_10sp"
@@ -390,12 +394,11 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/progres3"
+                    android:id="@+id/tvDefValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:lineHeight="16sp"
                     android:textAlignment="center"
                     android:textColor="#1D1D1D"
                     android:textSize="@dimen/_10sp"
@@ -404,12 +407,11 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/progres4"
+                    android:id="@+id/tvSpAttackValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:lineHeight="16sp"
                     android:textAlignment="center"
                     android:textColor="#1D1D1D"
                     android:textSize="@dimen/_10sp"
@@ -418,12 +420,11 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/progres5"
+                    android:id="@+id/tvSpDefenseValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:lineHeight="16sp"
                     android:textAlignment="center"
                     android:textColor="#1D1D1D"
                     android:textSize="@dimen/_10sp"
@@ -432,12 +433,11 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/progres6"
+                    android:id="@+id/tvSpeedValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins"
-                    android:lineHeight="16sp"
                     android:textAlignment="center"
                     android:textColor="#1D1D1D"
                     android:textSize="@dimen/_10sp"
@@ -454,7 +454,7 @@
                 android:orientation="vertical">
 
                 <ProgressBar
-                    android:id="@+id/progressbar1"
+                    android:id="@+id/pbHP"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -463,7 +463,7 @@
                     android:max="200" />
 
                 <ProgressBar
-                    android:id="@+id/progressbar2"
+                    android:id="@+id/pbAttack"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -472,7 +472,7 @@
                     android:max="200" />
 
                 <ProgressBar
-                    android:id="@+id/progressbar3"
+                    android:id="@+id/pbDef"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -481,7 +481,7 @@
                     android:max="200" />
 
                 <ProgressBar
-                    android:id="@+id/progressbar4"
+                    android:id="@+id/pbSpAtk"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -490,7 +490,7 @@
                     android:max="200" />
 
                 <ProgressBar
-                    android:id="@+id/progressbar5"
+                    android:id="@+id/pbSpDef"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -499,7 +499,7 @@
                     android:max="200" />
 
                 <ProgressBar
-                    android:id="@+id/progressbar6"
+                    android:id="@+id/pbSpeed"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -534,7 +534,7 @@
         app:srcCompat="@drawable/ic_arrow_back" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/pokeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8dp"
@@ -547,26 +547,26 @@
         tools:text="Balbasaur" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/pokeId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_24dp"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/pokeName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/pokeName"
         tools:text="#001" />
 
     <ImageView
-        android:id="@+id/tvPokemon"
+        android:id="@+id/ivPoke_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/pokeName"
         app:srcCompat="@drawable/bulbasaur" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

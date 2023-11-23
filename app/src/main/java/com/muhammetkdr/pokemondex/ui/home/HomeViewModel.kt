@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.muhammetkdr.pokemondex.base.BaseViewModel
+import com.muhammetkdr.pokemondex.common.capitalizeWords
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -53,7 +53,7 @@ class HomeViewModel @Inject constructor(
                         val pokemons = mutableListOf<PokemonItem>()
                         val pokeUiItem = response.data.mapIndexed { index, data ->
                             PokemonItem(
-                                pokeName = data.pokeName,
+                                pokeName = data.pokeName.capitalizeWords(),
                                 pokeId = (index + 1).getPokemonId(),
                                 imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png"
                             )

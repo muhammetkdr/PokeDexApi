@@ -1,6 +1,12 @@
 package com.muhammetkdr.pokemondex.common
 
+import android.content.res.ColorStateList
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
@@ -12,6 +18,7 @@ import com.muhammetkdr.pokemondex.domain.model.PokemonEntity
 import com.muhammetkdr.pokemondex.domain.model.PokemonListEntity
 import com.muhammetkdr.pokemondex.domain.model.PokemonSpeciesEntity
 import retrofit2.Response
+import java.util.Locale
 
 fun ImageView.setPokemonImage(pokePath: String?) {
     Glide.with(this).load(pokePath)
@@ -101,7 +108,7 @@ fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
 fun Response<PokemonSpecies>.toPokemonSpeciesEntity(): PokemonSpeciesEntity{
     return body()!!.run {
         PokemonSpeciesEntity(
-            description = flavorTextEntries!![9].flavorText.orEmpty()
+            description = flavorTextEntries!![9].flavorText.orEmpty().replace("\n","")
         )
     }
 }
@@ -112,4 +119,28 @@ inline fun <T> LiveData<T>.observeIfNotNull(owner: LifecycleOwner, crossinline o
             observer(data)
         }
     }
+}
+
+fun TextView.setColor(@ColorRes colorId: Int){
+    this.setTextColor(ContextCompat.getColor(this.context,colorId))
+}
+
+fun ProgressBar.setProgressColor(@ColorRes colorId: Int){
+    this.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(this.context,colorId))
+}
+
+fun String.capitalizeWords(): String = split(" ").joinToString(" ") { word ->
+    word.replaceFirstChar {
+        if (it.isLowerCase()) it.titlecase(
+            Locale.ROOT
+        ) else it.toString()
+    }
+}
+
+fun View.show(){
+    this.visibility = View.VISIBLE
+}
+
+fun View.gone(){
+    this.visibility = View.GONE
 }

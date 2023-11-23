@@ -27,7 +27,7 @@ class DetailViewModel @Inject constructor(
 
     fun getPokemon(name: String) = viewModelScope.launch{
 
-        getPokemonInfoUseCase(name = name)
+        getPokemonInfoUseCase(name = name.lowercase())
             .onStart { showIndicator() }
             .collect { pokemonEntity ->
             when (pokemonEntity) {
@@ -70,7 +70,7 @@ class DetailViewModel @Inject constructor(
             }
         }
 
-        getPokemonSpeciesUseCase(name = name)
+        getPokemonSpeciesUseCase(name = name.lowercase())
             .onCompletion { hideIndicator() }
             .collect { pokemonSpeciesEntity ->
 
