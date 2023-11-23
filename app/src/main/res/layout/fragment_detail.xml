@@ -11,6 +11,7 @@
     android:background="@color/pokemon_type_bug">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="@dimen/_0dp"
         android:layout_height="@dimen/_0dp"
         android:layout_marginHorizontal="@dimen/_4dp"
@@ -61,36 +62,33 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAbout">
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
-                
+
                 <LinearLayout
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="@dimen/_8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_8dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_weight"
                         android:layout_marginEnd="8dp"
-                        >
-                    </ImageView>
+                        android:src="@drawable/ic_weight" />
 
                     <TextView
                         android:id="@+id/tvWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="10sp"
+                        android:fontFamily="@font/poppins"
                         android:paddingTop="2dp"
                         android:textColor="#1D1D1D"
-                        android:fontFamily="@font/poppins"
-                        tools:text="6,9 kg"
-                        >
+                        android:textSize="10sp"
+                        tools:text="6,9 kg">
 
                     </TextView>
 
@@ -99,15 +97,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="8sp"
-                    android:text="@string/weight"
+                    android:fontFamily="@font/poppins"
                     android:paddingTop="2dp"
+                    android:text="@string/weight"
                     android:textAlignment="center"
                     android:textColor="#666666"
-                    android:fontFamily="@font/poppins">
+                    android:textSize="8sp">
 
                 </TextView>
-                
+
             </LinearLayout>
 
             <View
@@ -118,36 +116,33 @@
 
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="@dimen/_8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_8dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_straighten"
                         android:layout_marginEnd="8dp"
-                        >
-                    </ImageView>
+                        android:src="@drawable/ic_straighten" />
 
                     <TextView
                         android:id="@+id/tvHeight"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="10sp"
+                        android:fontFamily="@font/poppins"
                         android:paddingTop="2dp"
                         android:textColor="#1D1D1D"
-                        android:fontFamily="@font/poppins"
-                        tools:text="6,9 m"
-                        >
+                        android:textSize="10sp"
+                        tools:text="6,9 m">
 
                     </TextView>
 
@@ -156,12 +151,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="8sp"
-                    android:text="@string/height"
+                    android:fontFamily="@font/poppins"
                     android:paddingTop="2dp"
+                    android:text="@string/height"
                     android:textAlignment="center"
                     android:textColor="#666666"
-                    android:fontFamily="@font/poppins">
+                    android:textSize="8sp">
 
                 </TextView>
 
@@ -176,9 +171,9 @@
 
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -191,20 +186,19 @@
                         android:id="@+id/tvFirstMove"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="10sp"
-                        android:textColor="#1D1D1D"
                         android:fontFamily="@font/poppins"
-                        tools:text="6,9 kg">
-                    </TextView>
+                        android:textColor="#1D1D1D"
+                        android:textSize="10sp"
+                        tools:text="6,9 kg" />
 
 
                     <TextView
                         android:id="@+id/tvSecondMove"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="10sp"
-                        android:textColor="#1D1D1D"
                         android:fontFamily="@font/poppins"
+                        android:textColor="#1D1D1D"
+                        android:textSize="10sp"
                         tools:text="6,9 kg">
 
                     </TextView>
@@ -214,13 +208,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="8sp"
-                    android:text="@string/moves"
-                    android:paddingTop="2dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/poppins"
+                    android:paddingTop="2dp"
+                    android:text="@string/moves"
                     android:textAlignment="center"
                     android:textColor="#666666"
-                    android:fontFamily="@font/poppins">
+                    android:textSize="8sp">
 
                 </TextView>
 
@@ -235,8 +229,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="@dimen/_16dp"
             android:fontFamily="@font/poppins"
-            android:textColor="#1D1D1D"
             android:textAlignment="center"
+            android:textColor="#1D1D1D"
             android:textSize="@dimen/_10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -459,8 +453,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="false"
                     android:layout_weight="1"
+                    android:indeterminate="false"
                     android:max="255" />
 
                 <ProgressBar
@@ -468,8 +462,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="false"
                     android:layout_weight="1"
+                    android:indeterminate="false"
                     android:max="255" />
 
                 <ProgressBar
@@ -477,8 +471,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="false"
                     android:layout_weight="1"
+                    android:indeterminate="false"
                     android:max="255" />
 
                 <ProgressBar
@@ -486,8 +480,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="false"
                     android:layout_weight="1"
+                    android:indeterminate="false"
                     android:max="255" />
 
                 <ProgressBar
@@ -495,16 +489,16 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="false"
                     android:layout_weight="1"
+                    android:indeterminate="false"
                     android:max="255" />
 
                 <ProgressBar
                     android:id="@+id/pbSpeed"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:indeterminate="false"
                     android:max="255" />
 
@@ -569,5 +563,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pokeName"
         app:srcCompat="@drawable/bulbasaur" />
+
+    <ImageView
+        android:id="@+id/btnNext"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="@dimen/_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_arrow_right" />
+
+    <ImageView
+        android:id="@+id/btnPrevious"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/_24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_arrow_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
