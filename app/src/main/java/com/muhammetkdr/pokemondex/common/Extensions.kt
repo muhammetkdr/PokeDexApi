@@ -83,8 +83,8 @@ fun Response<PokemonList>.toPokemonListEntity(): List<PokemonListEntity> {
 fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
     return body()!!.run {
         PokemonEntity(
-            weight = ((weight!!*0.1f).toString().take(5) + " kg").replace('.',','),
-            height = ((height!!*0.1f).toString().take(5) + " m").replace('.',','),
+            weight = ((weight!!*0.1f).toString().take(5).dropLastWhile { it == '0' } + " kg").replace('.',','),
+            height = ((height!!*0.1f).toString().take(5).dropLastWhile { it == '0' } + " m").replace('.',','),
             moves = abilities!!.map { it.ability!!.name.orEmpty().capitalizeMovesData() },
             pokeTypes = types!!.map {
                 it.type!!.name!!.capitalizeWords()
@@ -148,10 +148,6 @@ fun String.capitalizeMovesData(): String = split("-").joinToString("-") { word -
 
 fun View.show(){
     this.visibility = View.VISIBLE
-}
-
-fun View.gone(){
-    this.visibility = View.GONE
 }
 
 fun View.showSnackbar(msg: String) {
