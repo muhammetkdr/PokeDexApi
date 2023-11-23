@@ -3,15 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center">
+    android:layout_marginHorizontal="8dp"
+    >
 
     <TextView
         android:id="@+id/tvType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/blue"
-        tools:text="BUG" />
+        android:textSize="10sp"
+        android:paddingVertical="2dp"
+        android:textAlignment="center"
+        android:paddingHorizontal="8dp"
+        android:fontFamily="@font/poppins_bold"
+        android:backgroundTint="@color/pokemon_type_bug"
+        android:background="@drawable/item_background"
+        android:textColor="@color/white"
+        tools:text="Grass" />
 
 </FrameLayout>
