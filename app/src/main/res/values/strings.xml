@@ -3,4 +3,5 @@
     <string name="none">PokemonDex</string>
     <string name="search">Search..</string>
     <string name="binding_null">Binding is not initialized!</string>
+    <string name="pokedex">Pokédex</string>
 </resources>

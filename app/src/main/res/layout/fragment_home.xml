@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/identity_primary">
 
-    <ProgressBar
-        android:id="@+id/searchProgressbar"
+    <ImageView
+        android:id="@+id/ivPokemonLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/_10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_pokeball"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldSearch" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPokedex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pokedex"
+        android:textSize="24sp"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPokemonLogo"
+        app:layout_constraintTop_toTopOf="@+id/ivPokemonLogo"
+        app:layout_constraintBottom_toBottomOf="@id/ivPokemonLogo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldSearch"
@@ -22,44 +38,56 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_4dp"
         android:hint="@string/search"
+        app:boxBackgroundColor="@color/white"
         android:textColorHint="@color/light_blue"
-        app:boxCornerRadiusBottomEnd="@dimen/_16dp"
-        app:boxCornerRadiusBottomStart="@dimen/_16dp"
-        app:boxCornerRadiusTopEnd="@dimen/_16dp"
-        app:boxCornerRadiusTopStart="@dimen/_16dp"
+        app:boxCornerRadiusBottomEnd="@dimen/_24dp"
+        app:boxCornerRadiusBottomStart="@dimen/_24dp"
+        app:boxCornerRadiusTopEnd="@dimen/_24dp"
+        app:boxCornerRadiusTopStart="@dimen/_24dp"
+        app:boxStrokeWidth="0dp"
         app:boxStrokeColor="@color/light_blue"
-        app:endIconDrawable="@drawable/ic_search_blue"
+        app:endIconDrawable="@drawable/ic_search_red"
+        app:startIconTint="@color/identity_primary"
         app:hintTextColor="@color/teal_200"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPokedex"
         app:startIconDrawable="@drawable/ic_search_blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_blue_transparent_300"
             android:imeOptions="actionDone"
             android:singleLine="true"
             android:textColorHint="@color/light_blue300"
-            android:textSize="@dimen/_16sp"
+            android:textSize="@dimen/_12sp"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardCornerRadius="@dimen/_8dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardBackgroundColor="@color/white"
+        android:elevation="@dimen/_16dp"
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toBottomOf="@id/textFieldSearch">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPoke"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:scrollbars="vertical"
-        android:layout_marginHorizontal="@dimen/_4dp"
-        android:layout_marginTop="@dimen/_24dp"
-        android:layout_marginEnd="@dimen/_4dp"
-        android:paddingStart="@dimen/_4dp"
-        android:paddingTop="@dimen/_16dp"
-        android:paddingEnd="@dimen/_12dp"
-        android:paddingBottom="@dimen/_12dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textFieldSearch" />
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="20dp"
+        tools:listitem="@layout/item_pokemons"
+        tools:itemCount="24"
+ />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

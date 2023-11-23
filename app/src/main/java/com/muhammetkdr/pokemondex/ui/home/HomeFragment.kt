@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         initRvAdapter()
         handleSearchbar()
 
-        binding.searchProgressbar.visibility = View.GONE
     }
 
     private fun handleSearchbar() {
