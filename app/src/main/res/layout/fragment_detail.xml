@@ -11,9 +11,9 @@
     android:background="@color/pokemon_type_bug">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="4dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_marginHorizontal="@dimen/_4dp"
         android:layout_marginTop="-56dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/detail_background"

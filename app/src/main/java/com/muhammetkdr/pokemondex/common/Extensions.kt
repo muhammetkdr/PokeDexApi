@@ -83,8 +83,8 @@ fun Response<PokemonList>.toPokemonListEntity(): List<PokemonListEntity> {
 fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
     return body()!!.run {
         PokemonEntity(
-            weight = ((weight!!*0.1f).toString().take(5).dropLastWhile { it == '0' } + " kg").replace('.',','),
-            height = ((height!!*0.1f).toString().take(5).dropLastWhile { it == '0' } + " m").replace('.',','),
+            weight = ((weight!!.toDouble().div(10).toString() + " km").replace('.',',')),
+            height = ((height!!.toDouble().div(10).toString() + " m").replace('.',',')),
             moves = abilities!!.map { it.ability!!.name.orEmpty().capitalizeMovesData() },
             pokeTypes = types!!.map {
                 it.type!!.name!!.capitalizeWords()
