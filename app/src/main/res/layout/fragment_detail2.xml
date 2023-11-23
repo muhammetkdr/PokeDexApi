@@ -105,9 +105,7 @@
                 </TextView>
                 
             </LinearLayout>
-            
-            
-            
+
             <View
                 android:id="@+id/view"
                 android:layout_width="1dp"
@@ -219,8 +217,7 @@
                 </TextView>
 
             </LinearLayout>
-            
-            
+
         </LinearLayout>
 
         <TextView
@@ -420,7 +417,6 @@
 
                 </TextView>
 
-
                 <TextView
                     android:id="@+id/progres5"
                     android:layout_width="wrap_content"
@@ -450,7 +446,6 @@
                 </TextView>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
-
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -512,7 +507,6 @@
                     android:indeterminate="false"
                     android:max="200" />
 
-
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -544,7 +538,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8dp"
-        android:fontFamily="@font/poppins_bold"
+        android:fontFamily="@font/poppins_thin"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/ivBackPress"

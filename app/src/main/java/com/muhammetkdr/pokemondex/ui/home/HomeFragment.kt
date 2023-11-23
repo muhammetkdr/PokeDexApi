@@ -55,12 +55,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun initRvAdapter() {
         binding.rvPoke.adapter = adapter
-        binding.rvPoke.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvPoke.layoutManager = GridLayoutManager(requireContext(), 3)
 
         adapter.setOnItemClickListener { id, name, url ->
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id, name, url)
             findNavController().navigate(action)
         }
+
     }
 
     private fun observeUi() {

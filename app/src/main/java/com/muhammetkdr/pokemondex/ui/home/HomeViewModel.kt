@@ -74,7 +74,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun filterPokemonQuery(query: Editable?) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             if (query.isNullOrBlank() || query.isEmpty()) {
                 _pokemonsQuery.postValue(_pokemons)
                 return@launch
@@ -83,11 +83,7 @@ class HomeViewModel @Inject constructor(
             val queryList = mutableListOf<PokemonItem>()
 
             _pokemons.forEach {
-                if (it.pokeName.contains(
-                        query.toString(),
-                        true
-                    ) || it.pokeId.contains(query.toString())
-                ) {
+                if (it.pokeName.contains(query.toString(), true) || it.pokeId.contains(query.toString())) {
                     queryList.add(it)
                 }
             }

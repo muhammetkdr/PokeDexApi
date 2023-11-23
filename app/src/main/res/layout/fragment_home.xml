@@ -47,12 +47,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPoke"
-        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_2dp"
         android:orientation="vertical"
         android:scrollbars="vertical"
+        android:layout_marginHorizontal="@dimen/_4dp"
+        android:layout_marginTop="@dimen/_24dp"
+        android:layout_marginEnd="@dimen/_4dp"
+        android:paddingStart="@dimen/_4dp"
+        android:paddingTop="@dimen/_16dp"
+        android:paddingEnd="@dimen/_12dp"
+        android:paddingBottom="@dimen/_12dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textFieldSearch" />

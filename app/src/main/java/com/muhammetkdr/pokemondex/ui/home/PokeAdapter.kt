@@ -4,19 +4,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.muhammetkdr.pokemondex.common.inflateAdapterItem
 import com.muhammetkdr.pokemondex.common.setPokemonImage
-import com.muhammetkdr.pokemondex.databinding.ItemPokemonBinding
+import com.muhammetkdr.pokemondex.databinding.ItemPokemonsBinding
 
 class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
 
     private val items = mutableListOf<PokemonItem>()
 
-    inner class PokemonViewHolder(private val binding: ItemPokemonBinding) :
+    inner class PokemonViewHolder(private val binding: ItemPokemonsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PokemonItem) {
 
             binding.ivPokemon.setPokemonImage(item.imageUrl)
-            binding.number.text = item.pokeId
-            binding.pokemonName.text = item.pokeName
+            binding.tvPokemonNumber.text = item.pokeId
+            binding.tvPokemonName.text = item.pokeName
 
             binding.root.setOnClickListener {
                 onItemClickListener?.invoke(item.pokeId, item.pokeName, item.imageUrl)
@@ -25,7 +25,7 @@ class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-        return PokemonViewHolder(parent.inflateAdapterItem(ItemPokemonBinding::inflate))
+        return PokemonViewHolder(parent.inflateAdapterItem(ItemPokemonsBinding::inflate))
     }
 
     override fun getItemCount(): Int = items.size

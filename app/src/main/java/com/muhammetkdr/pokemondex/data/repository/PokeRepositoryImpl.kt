@@ -33,7 +33,7 @@ class PokeRepositoryImpl @Inject constructor(
             val response = remoteDataSource.getPokemonList(limit, offset)
             emit(NetworkResponse.Success(response.mapTo { it.toPokemonListEntity() }))
         }.catch {
-            NetworkResponse.Error(it.message.orEmpty())
+            emit(NetworkResponse.Error(it.message.orEmpty()))
         }.flowOn(ioDispatcher)
     }
 
@@ -43,7 +43,7 @@ class PokeRepositoryImpl @Inject constructor(
             val response = remoteDataSource.getPokemonInfo(name)
             emit(NetworkResponse.Success(response.mapTo { it.toPokemonEntity() }))
         }.catch {
-            NetworkResponse.Error(it.message.orEmpty())
+            emit(NetworkResponse.Error(it.message.orEmpty()))
         }.flowOn(ioDispatcher)
     }
 
@@ -53,7 +53,7 @@ class PokeRepositoryImpl @Inject constructor(
             val response = remoteDataSource.getPokemonSpecies(name)
             emit(NetworkResponse.Success(response.mapTo { it.toPokemonSpeciesEntity() }))
         }.catch {
-            NetworkResponse.Error(it.message.orEmpty())
+            emit(NetworkResponse.Error(it.message.orEmpty()))
         }.flowOn(ioDispatcher)
     }
 }

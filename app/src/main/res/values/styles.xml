@@ -6,5 +6,12 @@
 
     </style>
 
+    <style name="roundedCardView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="color">@color/white</item>
+        <item name="cardElevation">5dp</item>
+    </style>
+
 
 </resources>
