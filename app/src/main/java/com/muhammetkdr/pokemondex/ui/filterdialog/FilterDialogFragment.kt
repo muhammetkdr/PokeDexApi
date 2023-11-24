@@ -1,5 +1,6 @@
 package com.muhammetkdr.pokemondex.ui.filterdialog
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,10 +49,12 @@ class FilterDialogFragment(private val lastSelectedFilter: FilterType = FilterTy
                 when (checkedId) {
                     R.id.rb_Name -> {
                         filter.invoke(FilterType.Name)
+                        dismiss()
                     }
 
                     R.id.rb_number -> {
                         filter.invoke(FilterType.Number)
+                        dismiss()
                     }
                 }
             }

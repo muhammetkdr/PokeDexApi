@@ -12,6 +12,7 @@ data class HomeScreenUiState(
 }
 
 data class PokemonItem(
+    val pokeUuid:Int = 0,
     val pokeName: String = "",
     val pokeId: String = "",
     val imageUrl: String = ""

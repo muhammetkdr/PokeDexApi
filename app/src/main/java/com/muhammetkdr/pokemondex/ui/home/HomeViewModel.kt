@@ -8,6 +8,7 @@ import com.muhammetkdr.pokemondex.base.BaseViewModel
 import com.muhammetkdr.pokemondex.common.capitalizeWords
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.domain.repository.PokeRepository
+import com.muhammetkdr.pokemondex.ui.filterdialog.FilterType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
@@ -32,6 +33,8 @@ class HomeViewModel @Inject constructor(
     private val _pokemonsQuery = MutableLiveData<List<PokemonItem>>()
     val pokemonsQuery: LiveData<List<PokemonItem>> = _pokemonsQuery
 
+    var lastSelected = FilterType.Number
+
     private fun getPokemonList() = viewModelScope.launch {
         pokeRepository.getPokemonList(limit = limit, offset = offset)
             .onStart { showIndicator() }
@@ -53,6 +56,7 @@ class HomeViewModel @Inject constructor(
                         val pokemons = mutableListOf<PokemonItem>()
                         val pokeUiItem = response.data.mapIndexed { index, data ->
                             PokemonItem(
+                                pokeUuid = index + 1,
                                 pokeName = data.pokeName.capitalizeWords(),
                                 pokeId = (index + 1).getPokemonId(),
                                 imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png",
@@ -92,11 +96,41 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun sortListBySelectedItem(filterType: FilterType) = viewModelScope.launch {
+        when (filterType) {
+            FilterType.Name -> {
+                val sorted = _pokemons.sortedBy {
+                    it.pokeName
+                }
+
+                _pokemons.clear()
+                _pokemons.addAll(sorted)
+
+                _pokemonsQuery.postValue(_pokemons)
+
+                lastSelected = FilterType.Name
+            }
+
+            FilterType.Number -> {
+                val sorted = _pokemons.sortedBy {
+                    it.pokeUuid
+                }
+
+                _pokemons.clear()
+                _pokemons.addAll(sorted)
+
+                _pokemonsQuery.postValue(_pokemons)
+
+                lastSelected = FilterType.Number
+            }
+        }
+    }
+
     private fun Int.getPokemonId(): String {
         return "#${this.toString().padStart(3, '0')}"
     }
 
-    companion object{
+    companion object {
         private const val limit = 150
         private const val offset = 0
     }

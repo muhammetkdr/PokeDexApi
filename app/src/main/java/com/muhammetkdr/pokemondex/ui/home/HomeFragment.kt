@@ -39,19 +39,17 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun initListeners() {
-        var filterType = FilterType.Name
-
         binding.btnOrder.setOnClickListener {
-            FilterDialogFragment(lastSelectedFilter = filterType) {
+            FilterDialogFragment(lastSelectedFilter = viewModel.lastSelected) {
                 when (it) {
                     FilterType.Number -> {
-                        filterType = FilterType.Number
-                        binding.tvPokedex.text = it.name
+                        viewModel.lastSelected = FilterType.Number // TODO
+                        viewModel.sortListBySelectedItem(FilterType.Number)
                     }
 
                     FilterType.Name -> {
-                        filterType = FilterType.Name
-                        binding.tvPokedex.text = it.name
+                        viewModel.lastSelected = FilterType.Name // TODO
+                        viewModel.sortListBySelectedItem(FilterType.Name)
                     }
                 }
             }.show(childFragmentManager, DIALOG_TAG)
