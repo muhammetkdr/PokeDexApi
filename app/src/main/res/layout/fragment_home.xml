@@ -13,9 +13,10 @@
         android:id="@+id/ivPokemonLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:src="@drawable/ic_pokeball"
+        android:contentDescription="@string/home_page_iv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,11 +24,11 @@
         android:id="@+id/tvPokedex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/_16dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/pokedex"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="@dimen/_24sp"
         app:layout_constraintBottom_toBottomOf="@id/ivPokemonLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -36,10 +37,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldSearch"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_8dp"
         android:hint="@string/search"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:textColorHint="@color/black"
@@ -49,7 +50,7 @@
         app:boxCornerRadiusTopEnd="@dimen/_24dp"
         app:boxCornerRadiusTopStart="@dimen/_24dp"
         app:boxStrokeColor="@color/identity_primary"
-        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidth="@dimen/_0dp"
         app:endIconDrawable="@drawable/ic_search_red"
         app:hintTextColor="@color/identity_primary"
         app:layout_constraintEnd_toStartOf="@+id/cvOrder"
@@ -75,10 +76,10 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvOrder"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_marginEnd="@dimen/_16dp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="32dp"
+        app:cardCornerRadius="@dimen/_32dp"
         app:layout_constraintBottom_toBottomOf="@+id/textFieldSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textFieldSearch">
@@ -90,6 +91,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:padding="@dimen/_8dp"
+            android:contentDescription="@string/home_page_iv"
             android:src="@drawable/ic_search_number"
             android:scaleType="centerCrop">
         </ImageView>
@@ -99,24 +101,24 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_marginHorizontal="@dimen/_4dp"
+        android:layout_marginTop="@dimen/_24dp"
+        android:layout_marginBottom="@dimen/_4dp"
         android:elevation="@dimen/_16dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textFieldSearch"
-        app:strokeWidth="0dp">
+        app:strokeWidth="@dimen/_0dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPoke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="20dp"
+            android:paddingHorizontal="@dimen/_8dp"
+            android:paddingVertical="@dimen/_20dp"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"

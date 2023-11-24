@@ -22,6 +22,8 @@
     <string name="number">Number</string>
     <string name="name">Name</string>
     <string name="base_stats">Base Stats</string>
+    <string name="home_page_iv">home_page_iv</string>
+    <string name="detail_page_iv">detail_page_iv</string>
 
 
 </resources>
