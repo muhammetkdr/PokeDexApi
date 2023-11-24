@@ -92,17 +92,17 @@ fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
             pokeTypes = types!!.map {
                 it.type!!.name!!.capitalizeWords()
             },
-            hpStat =  stats!!.first { it.stat!!.name == "hp" }.baseStat.toString(),
+            hpStat =  stats!!.first { it.stat!!.name == "hp" }.baseStat.toString().padStart(3, '0'),
             hpStatProgress = stats.first { it.stat!!.name == "hp" }.baseStat ?: 0,
-            attackStat = stats.first { it.stat!!.name == "attack" }.baseStat.toString(),
+            attackStat = stats.first { it.stat!!.name == "attack" }.baseStat.toString().padStart(3, '0'),
             attackStatProgress = stats.first { it.stat!!.name == "attack" }.baseStat ?: 0,
-            defenseStat = stats.first { it.stat!!.name == "defense" }.baseStat.toString(),
+            defenseStat = stats.first { it.stat!!.name == "defense" }.baseStat.toString().padStart(3, '0'),
             defenseStatProgress = stats.first { it.stat!!.name == "defense" }.baseStat ?: 0,
-            specialAttackStat = stats.first { it.stat!!.name == "special-attack" }.baseStat.toString(),
+            specialAttackStat = stats.first { it.stat!!.name == "special-attack" }.baseStat.toString().padStart(3, '0'),
             specialAttackStatProgress = stats.first { it.stat!!.name == "special-attack" }.baseStat ?: 0,
-            specialDefenseStat = stats.first { it.stat!!.name == "special-defense" }.baseStat.toString(),
+            specialDefenseStat = stats.first { it.stat!!.name == "special-defense" }.baseStat.toString().padStart(3, '0'),
             specialDefenseStatProgress = stats.first { it.stat!!.name == "special-defense" }.baseStat ?: 0,
-            speedStat = stats.first { it.stat!!.name == "speed" }.baseStat.toString(),
+            speedStat = stats.first { it.stat!!.name == "speed" }.baseStat.toString().padStart(3, '0'),
             speedStatProgress = stats.first { it.stat!!.name == "speed" }.baseStat ?: 0,
             pokemonColor = getPokemonColorByType( types.first().type!!.name!!)
         )

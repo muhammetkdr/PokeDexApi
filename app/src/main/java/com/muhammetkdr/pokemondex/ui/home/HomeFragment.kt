@@ -103,8 +103,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 }.show(childFragmentManager, DIALOG_TAG)
             }
 
-            val currentImage =
-                if (lastSelected == FilterType.Number) R.drawable.ic_search_number else R.drawable.ic_search_name
+            val currentImage = if (lastSelected == FilterType.Number) R.drawable.ic_search_number
+                else R.drawable.ic_search_name
             binding.ivButtonOrder.setImageDrawable(getDrawable(requireContext(), currentImage))
             viewModel.sortListBySelectedItem(lastSelected)
         }
