@@ -1,6 +1,8 @@
 package com.muhammetkdr.pokemondex.domain.model
 
 data class PokemonEntity(
+    val pokemonUuid:Int,
+    val pokeName:String,
     val weight:String,
     val height: String ,
     val moves: List<String>,

@@ -1,6 +1,7 @@
 package com.muhammetkdr.pokemondex.common
 
 import android.content.res.ColorStateList
+import android.os.SystemClock
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -83,6 +84,8 @@ fun Response<PokemonList>.toPokemonListEntity(): List<PokemonListEntity> {
 fun Response<Pokemon>.toPokemonEntity(): PokemonEntity {
     return body()!!.run {
         PokemonEntity(
+            pokemonUuid = id ?: 1,
+            pokeName = name.orEmpty(),
             weight = ((weight!!.toDouble().div(10).toString() + " km").replace('.',',')),
             height = ((height!!.toDouble().div(10).toString() + " m").replace('.',',')),
             moves = abilities!!.map { it.ability!!.name.orEmpty().capitalizeMovesData() },
@@ -150,6 +153,32 @@ fun View.show(){
     this.visibility = View.VISIBLE
 }
 
+fun View.gone(){
+    this.visibility = View.GONE
+}
+
 fun View.showSnackbar(msg: String) {
     Snackbar.make(this, msg, Snackbar.LENGTH_LONG).show()
+}
+
+fun View.setSafeOnClickListener(onSafeClick: (View) -> Unit) {
+    setOnClickListener(
+        SafeClickListener {
+            onSafeClick(it)
+        }
+    )
+}
+
+private class SafeClickListener(
+    private var defaultTimeInterval: Int = 500,
+    private val onSafeCLick: (View) -> Unit,
+) : View.OnClickListener {
+    private var lastTimeClicked: Long = 0
+    override fun onClick(v: View) {
+        if (SystemClock.elapsedRealtime() - lastTimeClicked < defaultTimeInterval) {
+            return
+        }
+        lastTimeClicked = SystemClock.elapsedRealtime()
+        onSafeCLick(v)
+    }
 }

@@ -3,6 +3,12 @@ package com.muhammetkdr.pokemondex.ui.detail
 data class PokemonUiState(
     val isError: Boolean = false,
     val errorMessage: String = "",
+    val pokeUuid:Int = 1,
+    val pokeId:String = "",
+    val pokeName:String = "",
+    val pokeImgUrl:String = "",
+    val isFirst:Boolean = false,
+    val isLast:Boolean = false,
     val weight: String = "",
     val height: String = "",
     val moves: List<String> = emptyList(),

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.muhammetkdr.pokemondex.base.BaseViewModel
+import com.muhammetkdr.pokemondex.common.capitalizeWords
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.domain.usecase.GetPokemonInfoUseCase
 import com.muhammetkdr.pokemondex.domain.usecase.GetPokemonSpeciesUseCase
@@ -45,6 +46,12 @@ class DetailViewModel @Inject constructor(
 
                     val pokeUiState = pokemonEntity.data.run {
                         PokemonUiState(
+                            pokeUuid = pokemonUuid,
+                            pokeName = pokeName.capitalizeWords(),
+                            pokeId = (pokemonUuid).getPokemonId(),
+                            pokeImgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonUuid}.png",
+                            isFirst = pokemonUuid == firstItem,
+                            isLast = pokemonUuid == lastItem,
                             height = height,
                             weight = weight,
                             moves = moves,
@@ -95,4 +102,22 @@ class DetailViewModel @Inject constructor(
             }
         }
     }
+
+    fun getNextItem(id:Int){
+        getPokemon(id.plus(1).toString())
+    }
+
+    fun getPreviousItem(id:Int){
+        getPokemon(id.minus(1).toString())
+    }
+
+    private fun Int.getPokemonId(): String {
+        return "#${this.toString().padStart(3, '0')}"
+    }
+
+    companion object{
+        const val firstItem = 1
+        const val lastItem = 150
+    }
+
 }

@@ -55,7 +55,7 @@ class HomeViewModel @Inject constructor(
                             PokemonItem(
                                 pokeName = data.pokeName.capitalizeWords(),
                                 pokeId = (index + 1).getPokemonId(),
-                                imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png"
+                                imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png",
                             )
                         }
 

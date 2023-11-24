@@ -7,11 +7,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.muhammetkdr.pokemondex.R
 import com.muhammetkdr.pokemondex.base.BaseFragment
+import com.muhammetkdr.pokemondex.common.gone
 import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.setColor
 import com.muhammetkdr.pokemondex.common.setPokemonImage
 import com.muhammetkdr.pokemondex.common.setProgressColor
+import com.muhammetkdr.pokemondex.common.setSafeOnClickListener
+import com.muhammetkdr.pokemondex.common.show
 import com.muhammetkdr.pokemondex.common.showSnackbar
 import com.muhammetkdr.pokemondex.databinding.FragmentDetailBinding
 import com.muhammetkdr.pokemondex.ui.detail.adapter.SpeciesAdapter
@@ -31,6 +34,10 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
         observeUi()
         initRv()
         handleBackPress()
+        getPokemonData()
+    }
+
+    private fun getPokemonData() {
         viewModel.getPokemon(args.name)
     }
 
@@ -57,61 +64,80 @@ class DetailFragment : BaseFragment(R.layout.fragment_detail) {
                     with(binding){
                         root.visibility = View.VISIBLE
                         tvDescription.text = it.description
-
-                        pokeName.text = args.name
-                        pokeId.text = args.id
-                        ivPokeImg.setPokemonImage(args.imgUrl)
                     }
                 }
             }
         }
     }
 
-    private fun handlePokemonDetailSuccess(it: PokemonUiState) {
+    private fun handlePokemonDetailSuccess(pokeUiState: PokemonUiState) {
         with(binding) {
-            tvWeight.text = it.weight
-            tvHeight.text = it.height
 
-            tvFirstMove.text = it.moves.first()
+            pokeName.text = pokeUiState.pokeName
+            pokeId.text = pokeUiState.pokeId
+            ivPokeImg.setPokemonImage(pokeUiState.pokeImgUrl)
 
-            if (it.moves.size > ONE) {
-                tvSecondMove.text = it.moves[SECOND_ITEM]
+            if(pokeUiState.isFirst){
+                btnPrevious.gone()
+            }else{
+                btnPrevious.show()
+                btnPrevious.setSafeOnClickListener {
+                    viewModel.getPreviousItem(pokeUiState.pokeUuid)
+                }
             }
 
-            adapter.updatePokemonList(it.pokeTypes)
+            if (pokeUiState.isLast){
+                btnNext.gone()
+            }else{
+                btnNext.show()
+                btnNext.setSafeOnClickListener {
+                    viewModel.getNextItem(pokeUiState.pokeUuid)
+                }
+            }
 
-            tvHPValue.text = it.hpStat
-            tvAttackValue.text = it.attackStat
-            tvDefValue.text = it.defenseStat
-            tvSpAttackValue.text = it.specialAttackStat
-            tvSpDefenseValue.text = it.specialDefenseStat
-            tvSpeedValue.text = it.speedStat
+            tvWeight.text = pokeUiState.weight
+            tvHeight.text = pokeUiState.height
 
-            pbHP.setProgress(it.hpStatProgress, true)
-            pbAttack.setProgress(it.attackStatProgress, true)
-            pbDef.setProgress(it.defenseStatProgress, true)
-            pbSpAtk.setProgress(it.specialAttackStatProgress, true)
-            pbSpDef.setProgress(it.specialDefenseStatProgress, true)
-            pbSpeed.setProgress(it.speedStatProgress, true)
+            tvFirstMove.text = pokeUiState.moves.first()
 
-            pbHP.setProgressColor(it.pokemonColor)
-            pbAttack.setProgressColor(it.pokemonColor)
-            pbDef.setProgressColor(it.pokemonColor)
-            pbSpAtk.setProgressColor(it.pokemonColor)
-            pbSpDef.setProgressColor(it.pokemonColor)
-            pbSpeed.setProgressColor(it.pokemonColor)
+            if (pokeUiState.moves.size > ONE) {
+                tvSecondMove.text = pokeUiState.moves[SECOND_ITEM]
+            }
 
-            clDetail.setBackgroundColor(requireContext().getColor(it.pokemonColor))
+            adapter.updatePokemonList(pokeUiState.pokeTypes)
 
-            tvAbout.setColor(it.pokemonColor)
-            tvBaseStats.setColor(it.pokemonColor)
+            tvHPValue.text = pokeUiState.hpStat
+            tvAttackValue.text = pokeUiState.attackStat
+            tvDefValue.text = pokeUiState.defenseStat
+            tvSpAttackValue.text = pokeUiState.specialAttackStat
+            tvSpDefenseValue.text = pokeUiState.specialDefenseStat
+            tvSpeedValue.text = pokeUiState.speedStat
 
-            tvHp.setColor(it.pokemonColor)
-            tvAtk.setColor(it.pokemonColor)
-            tvDef.setColor(it.pokemonColor)
-            tvSatk.setColor(it.pokemonColor)
-            tvSdef.setColor(it.pokemonColor)
-            tvSpd.setColor(it.pokemonColor)
+            pbHP.setProgress(pokeUiState.hpStatProgress, true)
+            pbAttack.setProgress(pokeUiState.attackStatProgress, true)
+            pbDef.setProgress(pokeUiState.defenseStatProgress, true)
+            pbSpAtk.setProgress(pokeUiState.specialAttackStatProgress, true)
+            pbSpDef.setProgress(pokeUiState.specialDefenseStatProgress, true)
+            pbSpeed.setProgress(pokeUiState.speedStatProgress, true)
+
+            pbHP.setProgressColor(pokeUiState.pokemonColor)
+            pbAttack.setProgressColor(pokeUiState.pokemonColor)
+            pbDef.setProgressColor(pokeUiState.pokemonColor)
+            pbSpAtk.setProgressColor(pokeUiState.pokemonColor)
+            pbSpDef.setProgressColor(pokeUiState.pokemonColor)
+            pbSpeed.setProgressColor(pokeUiState.pokemonColor)
+
+            clDetail.setBackgroundColor(requireContext().getColor(pokeUiState.pokemonColor))
+
+            tvAbout.setColor(pokeUiState.pokemonColor)
+            tvBaseStats.setColor(pokeUiState.pokemonColor)
+
+            tvHp.setColor(pokeUiState.pokemonColor)
+            tvAtk.setColor(pokeUiState.pokemonColor)
+            tvDef.setColor(pokeUiState.pokemonColor)
+            tvSatk.setColor(pokeUiState.pokemonColor)
+            tvSdef.setColor(pokeUiState.pokemonColor)
+            tvSpd.setColor(pokeUiState.pokemonColor)
         }
     }
 
