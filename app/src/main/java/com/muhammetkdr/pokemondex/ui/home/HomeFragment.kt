@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,6 +15,7 @@ import com.muhammetkdr.pokemondex.common.show
 import com.muhammetkdr.pokemondex.common.showSnackbar
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
 import com.muhammetkdr.pokemondex.ui.filterdialog.FilterDialogFragment
+import com.muhammetkdr.pokemondex.ui.filterdialog.FilterType
 import com.muhammetkdr.pokemondex.ui.home.adapter.PokeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -39,10 +39,22 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun initListeners() {
+        var filterType = FilterType.Name
+
         binding.btnOrder.setOnClickListener {
-            FilterDialogFragment {
-                Toast.makeText(requireContext(), "Deneme", Toast.LENGTH_SHORT).show()
-            }.show(childFragmentManager,"filterDialogFragment")
+            FilterDialogFragment(lastSelectedFilter = filterType) {
+                when (it) {
+                    FilterType.Number -> {
+                        filterType = FilterType.Number
+                        binding.tvPokedex.text = it.name
+                    }
+
+                    FilterType.Name -> {
+                        filterType = FilterType.Name
+                        binding.tvPokedex.text = it.name
+                    }
+                }
+            }.show(childFragmentManager, DIALOG_TAG)
         }
 
         adapter.setOnItemClickListener { id, name, url ->
@@ -100,5 +112,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun handleError(errorMessage: String) {
         requireView().showSnackbar(errorMessage)
+    }
+
+    companion object {
+        private const val DIALOG_TAG = "filterDialogFragment"
     }
 }

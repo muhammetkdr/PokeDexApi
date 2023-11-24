@@ -16,8 +16,11 @@
     <string name="height">Height</string>
     <string name="weight">Weight</string>
     <string name="about">About</string>
+    <string name="sort_by">Sort by:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="number">Number</string>
+    <string name="name">Name</string>
 
 
 </resources>

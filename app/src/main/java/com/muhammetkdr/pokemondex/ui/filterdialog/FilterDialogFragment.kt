@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.muhammetkdr.pokemondex.R
 import com.muhammetkdr.pokemondex.databinding.FragmentFilterDialogBinding
 
-class FilterDialogFragment(private val filter: (FilterType) -> Unit) : DialogFragment() {
+enum class FilterType {
+    Number,
+    Name,
+}
 
-    enum class FilterType {
-        Number,
-        Name,
-    }
-
+class FilterDialogFragment(private val lastSelectedFilter: FilterType = FilterType.Number, private val filter: (FilterType) -> Unit) : DialogFragment() {
     private var _binding: FragmentFilterDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -29,9 +29,32 @@ class FilterDialogFragment(private val filter: (FilterType) -> Unit) : DialogFra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.root.setOnClickListener {
-            filter.invoke(FilterType.Name)
-            dismiss()
+        with(binding){
+            root.setOnClickListener {
+                dismiss()
+            }
+
+            // Son seçilen checkbox'ı işaretle
+            when (lastSelectedFilter) {
+                FilterType.Name -> {
+                    rbName.isChecked = true
+                }
+                FilterType.Number -> {
+                    rbNumber.isChecked = true
+                }
+            }
+
+            radioGroup.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.rb_Name -> {
+                        filter.invoke(FilterType.Name)
+                    }
+
+                    R.id.rb_number -> {
+                        filter.invoke(FilterType.Number)
+                    }
+                }
+            }
         }
     }
 
