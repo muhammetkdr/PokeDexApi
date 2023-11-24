@@ -1,8 +1,8 @@
 package com.muhammetkdr.pokemondex.di
 
 import android.content.Context
-import com.muhammetkdr.pokemondex.utils.indicator.DefaultIndicatorPresenter
-import com.muhammetkdr.pokemondex.utils.indicator.IndicatorPresenter
+import com.muhammetkdr.pokemondex.common.utils.indicator.DefaultIndicatorPresenter
+import com.muhammetkdr.pokemondex.common.utils.indicator.IndicatorPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

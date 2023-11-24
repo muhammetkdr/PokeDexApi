@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.show
 import com.muhammetkdr.pokemondex.common.showSnackbar
 import com.muhammetkdr.pokemondex.databinding.FragmentHomeBinding
+import com.muhammetkdr.pokemondex.ui.filterdialog.FilterDialogFragment
 import com.muhammetkdr.pokemondex.ui.home.adapter.PokeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -33,6 +35,20 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         observeUi()
         initRvAdapter()
         handleSearchbar()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnOrder.setOnClickListener {
+            FilterDialogFragment {
+                Toast.makeText(requireContext(), "Deneme", Toast.LENGTH_SHORT).show()
+            }.show(childFragmentManager,"filterDialogFragment")
+        }
+
+        adapter.setOnItemClickListener { id, name, url ->
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id, name, url)
+            findNavController().navigate(action)
+        }
     }
 
     private fun handleSearchbar() {
@@ -56,11 +72,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun initRvAdapter() {
         binding.rvPoke.adapter = adapter
-
-        adapter.setOnItemClickListener { id, name, url ->
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id, name, url)
-            findNavController().navigate(action)
-        }
     }
 
     private fun observeUi() {

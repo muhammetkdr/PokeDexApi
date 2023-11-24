@@ -1,4 +1,4 @@
-package com.muhammetkdr.pokemondex.utils.interceptor
+package com.muhammetkdr.pokemondex.common.utils.interceptor
 
 import android.content.Context
 import android.net.ConnectivityManager

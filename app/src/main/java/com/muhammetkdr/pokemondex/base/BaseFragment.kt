@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.muhammetkdr.pokemondex.utils.indicator.IndicatorPresenter
+import com.muhammetkdr.pokemondex.common.utils.indicator.IndicatorPresenter
 import javax.inject.Inject
 
 abstract class BaseFragment(@LayoutRes private val layoutId: Int) : Fragment(layoutId) {

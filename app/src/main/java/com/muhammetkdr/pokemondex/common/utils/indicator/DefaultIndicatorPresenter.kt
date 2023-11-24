@@ -1,4 +1,4 @@
-package com.muhammetkdr.pokemondex.utils.indicator
+package com.muhammetkdr.pokemondex.common.utils.indicator
 
 
 import android.content.Context
