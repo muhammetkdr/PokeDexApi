@@ -40,8 +40,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun initListeners() {
-        adapter.setOnItemClickListener { id, name, url ->
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id, name, url)
+        adapter.setOnItemClickListener { name ->
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(name)
             findNavController().navigate(action)
         }
     }

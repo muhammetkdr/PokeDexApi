@@ -20,7 +20,7 @@ class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
             binding.tvPokemonName.text = item.pokeName
 
             binding.root.setOnClickListener {
-                onItemClickListener?.invoke(item.pokeId, item.pokeName, item.imageUrl)
+                onItemClickListener?.invoke(item.pokeName)
             }
         }
     }
@@ -41,9 +41,9 @@ class PokeAdapter : RecyclerView.Adapter<PokeAdapter.PokemonViewHolder>() {
         notifyDataSetChanged()
     }
 
-    private var onItemClickListener: ((String, String, String) -> Unit)? = null
+    private var onItemClickListener: ((String) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (String, String, String) -> Unit) {
+    fun setOnItemClickListener(listener: (String) -> Unit) {
         onItemClickListener = listener
     }
 }
