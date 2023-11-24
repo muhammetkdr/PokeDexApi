@@ -1,8 +1,8 @@
-package com.muhammetkdr.pokemondex.di
+package com.muhammetkdr.pokemondex.ui.di
 
 import android.content.Context
-import com.muhammetkdr.pokemondex.common.utils.indicator.DefaultIndicatorPresenter
-import com.muhammetkdr.pokemondex.common.utils.indicator.IndicatorPresenter
+import com.muhammetkdr.pokemondex.ui.indicator.DefaultIndicatorPresenter
+import com.muhammetkdr.pokemondex.ui.indicator.IndicatorPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import dagger.hilt.android.scopes.FragmentScoped
 
 @Module
 @InstallIn(FragmentComponent::class)
-object AppModule {
+object IndicatorModule {
 
     @Provides
     @FragmentScoped

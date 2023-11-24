@@ -4,7 +4,7 @@ import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.muhammetkdr.pokemondex.base.BaseViewModel
+import com.muhammetkdr.pokemondex.ui.base.BaseViewModel
 import com.muhammetkdr.pokemondex.common.capitalizeWords
 import com.muhammetkdr.pokemondex.common.networkresponse.NetworkResponse
 import com.muhammetkdr.pokemondex.domain.repository.PokeRepository

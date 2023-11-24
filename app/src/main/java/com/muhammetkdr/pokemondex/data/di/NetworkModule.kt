@@ -1,8 +1,7 @@
 package com.muhammetkdr.pokemondex.data.di
 
-import com.muhammetkdr.pokemondex.common.Constants.BASE_URL
-import com.muhammetkdr.pokemondex.common.utils.interceptor.NetworkStatusInterceptor
 import com.muhammetkdr.pokemondex.data.api.PokeApi
+import com.muhammetkdr.pokemondex.data.interceptor.NetworkStatusInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +11,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
+private const val BASE_URL = "https://pokeapi.co/api/v2/"
 
 @Module
 @InstallIn(SingletonComponent::class)

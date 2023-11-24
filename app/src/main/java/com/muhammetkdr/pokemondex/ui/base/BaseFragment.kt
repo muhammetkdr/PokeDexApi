@@ -1,10 +1,10 @@
-package com.muhammetkdr.pokemondex.base
+package com.muhammetkdr.pokemondex.ui.base
 
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.muhammetkdr.pokemondex.common.utils.indicator.IndicatorPresenter
+import com.muhammetkdr.pokemondex.ui.indicator.IndicatorPresenter
 import javax.inject.Inject
 
 abstract class BaseFragment(@LayoutRes private val layoutId: Int) : Fragment(layoutId) {

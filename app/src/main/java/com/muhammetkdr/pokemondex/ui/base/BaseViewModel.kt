@@ -1,4 +1,4 @@
-package com.muhammetkdr.pokemondex.base
+package com.muhammetkdr.pokemondex.ui.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

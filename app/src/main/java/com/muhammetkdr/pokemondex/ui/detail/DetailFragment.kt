@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.muhammetkdr.pokemondex.R
-import com.muhammetkdr.pokemondex.base.BaseFragment
+import com.muhammetkdr.pokemondex.ui.base.BaseFragment
 import com.muhammetkdr.pokemondex.common.gone
 import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.common.observeIfNotNull

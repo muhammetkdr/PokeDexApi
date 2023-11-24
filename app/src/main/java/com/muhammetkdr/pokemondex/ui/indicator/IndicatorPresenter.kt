@@ -1,4 +1,4 @@
-package com.muhammetkdr.pokemondex.common.utils.indicator
+package com.muhammetkdr.pokemondex.ui.indicator
 
 interface IndicatorPresenter {
     fun show()

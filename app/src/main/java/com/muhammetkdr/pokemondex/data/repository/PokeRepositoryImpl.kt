@@ -6,8 +6,8 @@ import com.muhammetkdr.pokemondex.common.toPokemonEntity
 import com.muhammetkdr.pokemondex.common.toPokemonListEntity
 import com.muhammetkdr.pokemondex.common.toPokemonSpeciesEntity
 import com.muhammetkdr.pokemondex.data.source.PokeRemoteDataSource
-import com.muhammetkdr.pokemondex.di.Dispatcher
-import com.muhammetkdr.pokemondex.di.DispatcherType
+import com.muhammetkdr.pokemondex.common.di.Dispatcher
+import com.muhammetkdr.pokemondex.common.di.DispatcherType
 import com.muhammetkdr.pokemondex.domain.model.PokemonEntity
 import com.muhammetkdr.pokemondex.domain.model.PokemonListEntity
 import com.muhammetkdr.pokemondex.domain.model.PokemonSpeciesEntity

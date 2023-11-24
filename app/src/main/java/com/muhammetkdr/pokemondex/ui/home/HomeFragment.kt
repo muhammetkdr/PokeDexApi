@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.muhammetkdr.pokemondex.R
-import com.muhammetkdr.pokemondex.base.BaseFragment
+import com.muhammetkdr.pokemondex.ui.base.BaseFragment
 import com.muhammetkdr.pokemondex.common.inflate
 import com.muhammetkdr.pokemondex.common.observeIfNotNull
 import com.muhammetkdr.pokemondex.common.show

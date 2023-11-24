@@ -1,4 +1,4 @@
-package com.muhammetkdr.pokemondex.di
+package com.muhammetkdr.pokemondex.common.di
 
 import dagger.Module
 import dagger.Provides
