@@ -21,6 +21,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="number">Number</string>
     <string name="name">Name</string>
+    <string name="base_stats">Base Stats</string>
 
 
 </resources>

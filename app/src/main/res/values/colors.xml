@@ -44,4 +44,5 @@
     <color name="pokemon_type_water">#6493EB</color>
     <color name="identity_primary">#DC0A2D</color>
     <color name="grayscale">#666666</color>
+    <color name="dark_Gray">#1D1D1D</color>
 </resources>

@@ -6,17 +6,18 @@ import com.muhammetkdr.pokemondex.common.utils.indicator.IndicatorPresenter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.FragmentComponent
 import dagger.hilt.android.qualifiers.ActivityContext
-import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.scopes.FragmentScoped
 
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(FragmentComponent::class)
 object AppModule {
 
     @Provides
-    @ActivityScoped
-    fun provideIndicatorPresenter(@ActivityContext context: Context): IndicatorPresenter = DefaultIndicatorPresenter(context)
+    @FragmentScoped
+    fun provideIndicatorPresenter(@ActivityContext context: Context): IndicatorPresenter =
+        DefaultIndicatorPresenter(context)
 
 }
