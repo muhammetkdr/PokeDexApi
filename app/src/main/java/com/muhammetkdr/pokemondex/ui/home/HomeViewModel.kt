@@ -33,7 +33,8 @@ class HomeViewModel @Inject constructor(
     private val _pokemonsQuery = MutableLiveData<List<PokemonItem>>()
     val pokemonsQuery: LiveData<List<PokemonItem>> = _pokemonsQuery
 
-    var lastSelected = FilterType.Number
+    private val _lastSelected : MutableLiveData<FilterType> = MutableLiveData(FilterType.Number)
+    val lastSelected:LiveData<FilterType> = _lastSelected
 
     private fun getPokemonList() = viewModelScope.launch {
         pokeRepository.getPokemonList(limit = limit, offset = offset)
@@ -107,8 +108,6 @@ class HomeViewModel @Inject constructor(
                 _pokemons.addAll(sorted)
 
                 _pokemonsQuery.postValue(_pokemons)
-
-                lastSelected = FilterType.Name
             }
 
             FilterType.Number -> {
@@ -121,9 +120,12 @@ class HomeViewModel @Inject constructor(
 
                 _pokemonsQuery.postValue(_pokemons)
 
-                lastSelected = FilterType.Number
             }
         }
+    }
+
+    fun setLastSelectedState(selectedItem:FilterType){
+        _lastSelected.postValue(selectedItem)
     }
 
     private fun Int.getPokemonId(): String {

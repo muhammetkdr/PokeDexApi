@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -39,22 +40,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun initListeners() {
-        binding.btnOrder.setOnClickListener {
-            FilterDialogFragment(lastSelectedFilter = viewModel.lastSelected) {
-                when (it) {
-                    FilterType.Number -> {
-                        viewModel.lastSelected = FilterType.Number // TODO
-                        viewModel.sortListBySelectedItem(FilterType.Number)
-                    }
-
-                    FilterType.Name -> {
-                        viewModel.lastSelected = FilterType.Name // TODO
-                        viewModel.sortListBySelectedItem(FilterType.Name)
-                    }
-                }
-            }.show(childFragmentManager, DIALOG_TAG)
-        }
-
         adapter.setOnItemClickListener { id, name, url ->
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(id, name, url)
             findNavController().navigate(action)
@@ -99,6 +84,29 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     handleSuccess(it.pokeItems)
                 }
             }
+        }
+
+        viewModel.lastSelected.observeIfNotNull(viewLifecycleOwner) { lastSelected ->
+            binding.ivButtonOrder.setOnClickListener {
+                FilterDialogFragment(lastSelectedFilter = lastSelected) { selectedDialogItem ->
+                    when (selectedDialogItem) {
+                        FilterType.Number -> {
+                            viewModel.sortListBySelectedItem(selectedDialogItem)
+                            viewModel.setLastSelectedState(selectedDialogItem)
+                        }
+
+                        FilterType.Name -> {
+                            viewModel.sortListBySelectedItem(selectedDialogItem)
+                            viewModel.setLastSelectedState(selectedDialogItem)
+                        }
+                    }
+                }.show(childFragmentManager, DIALOG_TAG)
+            }
+
+            val currentImage =
+                if (lastSelected == FilterType.Number) R.drawable.ic_search_number else R.drawable.ic_search_name
+            binding.ivButtonOrder.setImageDrawable(getDrawable(requireContext(), currentImage))
+            viewModel.sortListBySelectedItem(lastSelected)
         }
     }
 

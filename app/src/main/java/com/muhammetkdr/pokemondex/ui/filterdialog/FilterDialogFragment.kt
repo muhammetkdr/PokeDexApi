@@ -1,6 +1,7 @@
 package com.muhammetkdr.pokemondex.ui.filterdialog
 
-import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,10 @@ enum class FilterType {
     Name,
 }
 
-class FilterDialogFragment(private val lastSelectedFilter: FilterType = FilterType.Number, private val filter: (FilterType) -> Unit) : DialogFragment() {
+class FilterDialogFragment(
+    private val lastSelectedFilter: FilterType,
+    private val filter: (FilterType) -> Unit
+) : DialogFragment() {
     private var _binding: FragmentFilterDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -24,13 +28,16 @@ class FilterDialogFragment(private val lastSelectedFilter: FilterType = FilterTy
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFilterDialogBinding.inflate(inflater, container, false)
+
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with(binding){
+        with(binding) {
             root.setOnClickListener {
                 dismiss()
             }
@@ -40,6 +47,7 @@ class FilterDialogFragment(private val lastSelectedFilter: FilterType = FilterTy
                 FilterType.Name -> {
                     rbName.isChecked = true
                 }
+
                 FilterType.Number -> {
                     rbNumber.isChecked = true
                 }

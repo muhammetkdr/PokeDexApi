@@ -1,8 +1,8 @@
 package com.muhammetkdr.pokemondex.data.di
 
 import com.muhammetkdr.pokemondex.common.Constants.BASE_URL
-import com.muhammetkdr.pokemondex.data.api.PokeApi
 import com.muhammetkdr.pokemondex.common.utils.interceptor.NetworkStatusInterceptor
+import com.muhammetkdr.pokemondex.data.api.PokeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
