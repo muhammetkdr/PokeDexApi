@@ -10,12 +10,12 @@ This is a Pokedex App that you can see Pokemons and Details with Clean Architect
 <img src="https://github.com/mskdr/MovieApp/assets/71526845/921df910-9741-461b-8a83-6b3e5e5f3c54" width="150">
 <img src="https://github.com/mskdr/MovieApp/assets/71526845/969f5227-94bc-48e9-90f5-56b69ad6c3e5" width="150">
 <img src="https://github.com/mskdr/MovieApp/assets/71526845/972f83a4-4ce0-4e66-bef8-45bfc779a39b" width="150">
-
 <img src="https://github.com/mskdr/MovieApp/assets/71526845/60ff2f36-2d2c-4b19-8b75-1e49b8d6a157" width="150">
-
-
-
 <img src="https://github.com/mskdr/MovieApp/assets/71526845/84fa4044-8d32-4909-9cd3-45c0467709b8" width="150">
+
+## Video
+<img src="https://github.com/mskdr/MovieApp/assets/71526845/e6292f32-9d87-41c5-b242-d5fda8ac9bc4" width="200">
+
 
 ## Architecture
 This app uses MVVM (Model-View-ViewModel) Clean Architecture
