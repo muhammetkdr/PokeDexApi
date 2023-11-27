@@ -14,7 +14,7 @@ This is a Pokedex App that you can see Pokemons and Details with Clean Architect
 <img src="https://github.com/mskdr/MovieApp/assets/71526845/84fa4044-8d32-4909-9cd3-45c0467709b8" width="150">
 
 ## Video
-<img src="https://github.com/mskdr/MovieApp/assets/71526845/e6292f32-9d87-41c5-b242-d5fda8ac9bc4" width="200">
+[<img src="https://github.com/mskdr/PokeDexApi/assets/71526845/c094f9b1-2378-416d-bd07-84b5ed202da3" width="200">](https://github.com/mskdr/PokeDexApi/assets/71526845/c094f9b1-2378-416d-bd07-84b5ed202da3)
 
 
 ## Architecture
