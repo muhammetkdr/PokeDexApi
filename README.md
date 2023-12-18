@@ -37,5 +37,5 @@ This app uses MVVM (Model-View-ViewModel) Clean Architecture
     
 ## Contact With Me  
 <p align="left">
-<a href="https://www.linkedin.com/in/muhammet-k%C3%BCd%C3%BCr/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="muhammetküdür" height="30" width="40" /></a>
+<a href="https://www.linkedin.com/in/muhammet-kudur/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="muhammetküdür" height="30" width="40" /></a>
 </p>
